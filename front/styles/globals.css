@@ -9,6 +9,21 @@
   src:  url('/fonts/CaviarDreams-Bold.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'SourceCodePro';
+  src: url('/fonts/SourceCodePro-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'CascadiaCode';
+  src: url('/fonts/CascadiaCode-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

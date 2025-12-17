@@ -9,7 +9,7 @@ export default function Home() {
   return (
   <section className={style.home_wrapper}>  
     <LandingBlock />
-    <NavigationBlock />
+    {/* <NavigationBlock /> */}
     <ProjectsBlock />
     <SkillsBlock />
   </section>

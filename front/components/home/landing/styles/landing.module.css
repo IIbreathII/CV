@@ -2,130 +2,117 @@
   width: 100%;
   height: 100vh; 
   display: flex;
-  background-color: #302e2e;
-
-}
-
-.back_1 {
-  z-index: 0;
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  background-image: url('/images/landing/back.png');
-  background-repeat: repeat-x; 
-  background-size: auto 100%; 
-  animation: scrollBackground 30s linear infinite !important;
-}
-
-@keyframes scrollBackground {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 100% 0; 
-  }
-}
-
-
-.landing_background {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-repeat: no-repeat;
-  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;     
-  bottom: 0;             
-  left: 50%;             
-  transform: translateX(-50%); 
+  background-color: #000000;
 }
 
-.title {
+.landing_wrapper::before {
+  content: "Devel\Aopment";
+  position: absolute;
+  inset: 0; 
+   white-space: pre;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  font-size: clamp(2rem, 15vw, 20rem); 
+  color: #7e7b7b3d;
+  white-space: normal; 
+  word-break: break-word; 
+  font-family: 'Inter';
+  font-weight: 700;
+   line-height: 0.964;
+   white-space: pre; 
+   width: 100%;
+}
+
+
+
+
+.left_side {
   width: auto;
+  height: 100%;
+  justify-content: center;
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
-  gap: 0.01em; 
-  align-items: center;
-  font-family: "Intro";
-  color: #fdfdfd;
-  font-size: clamp(35px, 5.5vw, 60px);
-  z-index: 5;
-  text-transform: uppercase;
-  text-shadow: 2px 4px 6px rgb(0, 0, 0);
-  text-align: center;
+  gap: 30px;
 }
 
 
-.title span {
+/* Заголовок */
+.title {
+  margin: 0;
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.05;
+  font-size: clamp(1.5rem, 3.2vw, 3.5rem);
   display: block;
-  font-family: "CaviarDreams";
-  color: #eef2f8;
-   font-size: clamp(35px, 3vw, 45px);
+  display: inline; white-space: nowrap;
+  width: auto;
+}
+
+/* Строка с TypingBanner / подзаголовок */
+.title span,
+.typing_inline {
+  font-family: "CascadiaCode", monospace;
   text-transform: lowercase;
+  font-weight: 400;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 0.9em; /* 60% от font-size заголовка */
+  margin-top: 0.2em;
+}
+
+/* Выделенное слово */
+.title strong {
+  color: #50df89;
+  position: relative;
+  z-index: 5;
 }
 
 .navigation {
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  
   gap: 20px;
 }
 
 .navigation_button {
   position: relative;
   display: inline-block;
-  padding: 15px 40px;
+  padding: 13px 40px;
   font-size: 30px;
-  font-family: "CaviarDreams";
-  color: #000;
-  background-color: #fff;
+  font-family: "inter";
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #ffffff00;
   border-radius: 50px;
   cursor: pointer;
+  border: #ffffff 3px solid;
   overflow: hidden;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
   z-index: 1;
-  border: none;
-  box-shadow: -1.618px 2px 0px 0px rgba(0, 0, 0, 0.43);
   user-select: none;
+
 }
 
 
-.navigation_button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 4px;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #5c4aff, #ff7e29);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: -1;
-  user-select: none;
-}
 
-.navigation_button::after {
-  content: "";
-  position: absolute;
-  inset: -10px; 
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -2; 
-}
+
 
 .navigation_button:hover {
   background-color: transparent;
   color: #000000;
+  background-color: #ffffff;
+  color: #000000;
+
+  
 }
 
 .navigation_button:hover::before {
@@ -138,16 +125,18 @@
 
 .contact_button {
   user-select: none;
-  position: relative; /* важно для абсолютного ::after */
+  position: relative; 
   height: 75px;
-  width: 320px;
-  background-color: rgb(0, 0, 0);
-  border: 4px solid #000000;
+  width: 100%;
+  max-width: 320px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 4px solid #ffffff;
   border-radius: 50px;
   font-size: 30px;
-  font-family: "CaviarDreams";
-  text-shadow: -1.669px 1.743px 0px rgba(0, 0, 0, 0.3);
+  font-family: "Inter";
+
   display: flex;
+  font-weight: 750;
   align-items: center;
   flex-direction: row;
   gap: 30px;
@@ -155,10 +144,12 @@
   padding-left: 30px;
   --dot-size: clamp(50px, 10vw, 55px);
   padding-right: calc(var(--dot-size) + 28px);
-  box-shadow: -1.618px 2px 0px 0px rgba(0, 0, 0, 0.43);
   transition: all 0.5s cubic-bezier(0.3, 0, 0.3, 0);
   cursor: pointer;
 }
+
+
+
 
 .contact_button a {
   color: #000000;
@@ -172,7 +163,7 @@
 .contact_button > * {
   position: relative;
   z-index: 10;
-  color: #000;
+
 }
 
 
@@ -188,7 +179,7 @@
   height: var(--dot-size);
   border-radius: 9999px; 
   background-color: #ffffff;
-  box-shadow: 0 0 4.2px 0.8px rgba(0,0,0,0.5);
+
   transition: all 0.5s cubic-bezier(0.3, 0, 0.3, 0);
   will-change: transform;
   transform-origin: right;
@@ -196,15 +187,16 @@
 }
 
 .contact_button:hover::after {
-  height: 75px;
-  width: 310px;
+  height: 71px;
+  width: 300px;
   right: 12px;
-  transform: translateY(-50%) scaleX(1.06);
+  transform: translateY(-50%) scaleX(1.05);
   transform-origin: 10% 50%;
   background-color: #ffffff;
+  color: #000;
 }
 
-.contact_button:hover a {
+.contact_button:hover span {
   opacity: 1;
   visibility: visible;
 }
@@ -225,6 +217,104 @@
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+.character_container {
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
+.character_animation {
+  width: auto;
+  height: 100%;
+  max-width: 800px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+   animation: char-sway 3s ease-in-out infinite;
+
+  animation-delay: 0.15s;
+}
+
+.gradient_ring {
+  max-width: 550px;
+  width: calc(350px + 12vw);  /* почти тот же размер, чуть больше картинки */
+  height: calc(350px + 12vw);
+  transition: width 0.4s ease, height 0.4s ease; /* плавное изменение */
+}
+
+
+@keyframes ring-rock {
+  0%   { transform: translateX(-0.5%) ; }
+  50%  { transform: translateX( 0.5%) ; }
+  100% { transform: translateX(-0.5%) ; }
+}
+
+@keyframes char-sway {
+  0%   { transform: translateX(-0.5%); }
+  50%  { transform: translateX( 0.5%); }
+  100% { transform: translateX(-0.5%); }
+}
+
+
+
+.character_image {
+  width: calc(250px + 12vw);  /* динамический размер */
+  height: calc(250px + 12vw); /* тот же размер, чтобы был ровный круг */
+  border-radius: 50%;
+  max-width: 444px;
+  max-height: 444px;
+  position: absolute;
+  translate: 0.5% 0;
+  background-image: url('/images/landing/character.png');
+  background-repeat: no-repeat;       
+  background-position: center center;
+  background-size: cover;          
+  transition: width 0.4s ease, height 0.4s ease; /* плавное изменение */
+}
+
+
+.typing_inline {
+  display: inline-block;      
+  white-space: pre-wrap;     
+  vertical-align: baseline;
+  line-height: inherit;       
+  writing-mode: horizontal-tb !important; 
+  transform: none !important;            
+}
+
+/* Гарантируем, что каждый символ остаётся inline, а не блоком */
+.typing_inline span,
+.typing_inline strong,
+.typing_inline .typed_char,
+.typing_inline .typed_bold {
+  display: inline !important;
+  white-space: pre !important;    /* сохраняет пробелы внутри сегмента */
+  vertical-align: baseline !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  writing-mode: horizontal-tb !important;
+}
+
+/* Если где-то глобально прописано span { display:block }, перекроем это */
+.typing_inline * {
+  display: inline !important;
+  writing-mode: horizontal-tb !important;
+}
+
+/* курсор (оставь как есть или используй свои стили) */
+.cursorContainer { display:inline-block; vertical-align: text-bottom; margin-left: .125rem; }
+.cursor { display:inline-block; animation: typing-blink 1s steps(1,end) infinite; line-height:1; }
+@keyframes typing-blink { 50% { opacity:0 } }
+
+
+
+
+
 
 @media (max-width: 1150px) {
   .contact_button {
@@ -241,6 +331,36 @@
   height: 75px;
   width: 270px;
   }
+}
+
+@media (max-width: 1070px) {
+  .landing_wrapper {
+    flex-direction: column-reverse;
+  }
+  .left_side {
+    justify-content: start;
+    height: auto;
+  }
+  .character_container {
+    height: auto;
+  }
+
+  .character_image {
+  width: calc(250px + 8vw);  /* динамический размер */
+  height: calc(250px + 8vw); /* тот же размер, чтобы был ровный круг */
+  }
+
+  
+  .gradient_ring {
+    width: calc(350px + 8vw);  /* почти тот же размер, чуть больше картинки */
+    height: calc(350px + 8vw);
+  }
+
+  .navigation {
+  display: flex;
+  justify-content: center;
+}
+
 }
 
 @media (max-width: 950px) {
@@ -280,10 +400,6 @@
   }
 
 
- .landing_background {
-    gap: 15px;
-    background-image: none; 
-  }
 }
 
 
