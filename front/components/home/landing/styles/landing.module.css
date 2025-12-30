@@ -1,34 +1,38 @@
 .landing_wrapper {
   width: 100%;
-  height: 100vh; 
+  height: 100%;
+  min-height: 100vh; 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #000000;
+  background-color: #1e1a22;
 }
 
 .landing_wrapper::before {
   content: "Devel\Aopment";
   position: absolute;
-  inset: 0; 
-   white-space: pre;
+  inset: 0;
+
   display: flex;
-  align-items: center;
   justify-content: center;
- 
-  font-size: clamp(2rem, 15vw, 20rem); 
-  color: #7e7b7b3d;
-  white-space: normal; 
-  word-break: break-word; 
+
+  height: 100vh;
+  width: 100%;
+
+  font-size: 20em;
   font-family: 'Inter';
   font-weight: 700;
-   line-height: 0.964;
-   white-space: pre; 
-   width: 100%;
+  line-height: 0.964;
+
+  color: #7e7b7b1e;
+  white-space: pre;
+  word-break: break-word;
+
+  overflow: hidden;
+  top: 50%;
+  transform: translateY(-50%);
 }
-
-
 
 
 .left_side {
@@ -40,8 +44,6 @@
   gap: 30px;
 }
 
-
-/* Заголовок */
 .title {
   margin: 0;
   position: relative;
@@ -55,7 +57,6 @@
   width: auto;
 }
 
-/* Строка с TypingBanner / подзаголовок */
 .title span,
 .typing_inline {
   font-family: "CascadiaCode", monospace;
@@ -64,11 +65,10 @@
   display: inline-block;
   width: fit-content;
   max-width: 100%;
-  font-size: 0.9em; /* 60% от font-size заголовка */
+  font-size: 0.9em; 
   margin-top: 0.2em;
 }
 
-/* Выделенное слово */
 .title strong {
   color: #50df89;
   position: relative;
@@ -79,7 +79,7 @@
   width: 100%;
   height: auto;
   display: flex;
-  
+  padding-bottom: 20px;
   gap: 20px;
 }
 
@@ -94,17 +94,13 @@
   background-color: #ffffff00;
   border-radius: 50px;
   cursor: pointer;
-  border: #ffffff 3px solid;
+  border: #ffffff 4px solid;
   overflow: hidden;
   transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
   z-index: 1;
   user-select: none;
 
 }
-
-
-
-
 
 .navigation_button:hover {
   background-color: transparent;
@@ -241,9 +237,9 @@
 
 .gradient_ring {
   max-width: 550px;
-  width: calc(350px + 12vw);  /* почти тот же размер, чуть больше картинки */
+  width: calc(350px + 12vw); 
   height: calc(350px + 12vw);
-  transition: width 0.4s ease, height 0.4s ease; /* плавное изменение */
+  transition: width 0.4s ease, height 0.4s ease;  
 }
 
 
@@ -262,8 +258,8 @@
 
 
 .character_image {
-  width: calc(250px + 12vw);  /* динамический размер */
-  height: calc(250px + 12vw); /* тот же размер, чтобы был ровный круг */
+  width: calc(250px + 12vw);  
+  height: calc(250px + 12vw);
   border-radius: 50%;
   max-width: 444px;
   max-height: 444px;
@@ -273,7 +269,7 @@
   background-repeat: no-repeat;       
   background-position: center center;
   background-size: cover;          
-  transition: width 0.4s ease, height 0.4s ease; /* плавное изменение */
+  transition: width 0.4s ease, height 0.4s ease; 
 }
 
 
@@ -286,13 +282,13 @@
   transform: none !important;            
 }
 
-/* Гарантируем, что каждый символ остаётся inline, а не блоком */
+
 .typing_inline span,
 .typing_inline strong,
 .typing_inline .typed_char,
 .typing_inline .typed_bold {
   display: inline !important;
-  white-space: pre !important;    /* сохраняет пробелы внутри сегмента */
+  white-space: pre !important;   
   vertical-align: baseline !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -300,21 +296,24 @@
   writing-mode: horizontal-tb !important;
 }
 
-/* Если где-то глобально прописано span { display:block }, перекроем это */
+
 .typing_inline * {
   display: inline !important;
   writing-mode: horizontal-tb !important;
 }
 
-/* курсор (оставь как есть или используй свои стили) */
-.cursorContainer { display:inline-block; vertical-align: text-bottom; margin-left: .125rem; }
-.cursor { display:inline-block; animation: typing-blink 1s steps(1,end) infinite; line-height:1; }
+
+.cursorContainer { 
+  display:inline-block; 
+  vertical-align: text-bottom; 
+  margin-left: .125rem; 
+}
+
+.cursor { 
+  display:inline-block; 
+  animation: typing-blink 1s steps(1,end) infinite; line-height:1; 
+}
 @keyframes typing-blink { 50% { opacity:0 } }
-
-
-
-
-
 
 @media (max-width: 1150px) {
   .contact_button {
@@ -346,13 +345,13 @@
   }
 
   .character_image {
-  width: calc(250px + 8vw);  /* динамический размер */
-  height: calc(250px + 8vw); /* тот же размер, чтобы был ровный круг */
+  width: calc(250px + 8vw); 
+  height: calc(250px + 8vw); 
   }
 
   
   .gradient_ring {
-    width: calc(350px + 8vw);  /* почти тот же размер, чуть больше картинки */
+    width: calc(350px + 8vw);  
     height: calc(350px + 8vw);
   }
 

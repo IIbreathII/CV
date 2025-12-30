@@ -120,7 +120,6 @@ export default function LandingBlock() {
           <button className={style.navigation_button}>my skills</button>
         </div>
       </div>
-
       <div className={style.character_container}>
         <div className={style.character_animation}>
           <svg
