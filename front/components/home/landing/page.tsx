@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import style from "./styles/landing.module.css";
 import Image from "next/image";
 import { Span } from "next/dist/trace";
+import Transition from "@/components/UI/transition/PageTransition";
 
 type Segment = {
   text: string;
@@ -94,8 +95,30 @@ const TypingBanner: React.FC<TypingBannerProps> = ({
 };
 
 export default function LandingBlock() {
+
+  const ref = useRef<HTMLDivElement | null>(null);
+  const handleClick = () => {
+    const el = ref.current;
+    if (!el) return;
+
+    el.classList.remove(style.animate);
+    void el.offsetWidth; 
+    el.classList.add(style.animate);
+
+
+    const link = document.createElement("a");
+    link.href = "/documents/CV.docx"; 
+    link.download = "CV.docx";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
+
   return (
     <div className={style.landing_wrapper}>
+   
+      <div className={style.page_hover} />
       <div className={style.left_side}>
             <h1 className={style.title}>
             Hi! i’m a full stack <strong>web developer</strong>
@@ -115,12 +138,15 @@ export default function LandingBlock() {
         <div role="navigation" aria-label="Навигация по разделам" className={style.navigation}>
           <button className={style.contact_button}>
             <span>let’s contact</span>
-            <Image src="/images/landing/arrow.png" alt="стрелка" width={16} height={16} className={style.arrow} />
           </button>
+          <Transition targetId="navigation">
           <button className={style.navigation_button}>my skills</button>
+          </Transition>
         </div>
       </div>
+
       <div className={style.character_container}>
+        
         <div className={style.character_animation}>
           <svg
             viewBox="0 0 99 100"
@@ -137,9 +163,18 @@ export default function LandingBlock() {
             </defs>
             <circle cx="50" cy="50" r="46" fill="transparent" stroke="url(#grad)" strokeWidth="4" vectorEffect="non-scaling-stroke" />
           </svg>
-          <div className={style.character_image} />
+          <div
+          ref={ref}
+          className={style.character_image}
+          onClick={handleClick}>
+            <div className={style.character_hover} />
+            <button className={style.button_character}>
+              <p>{"Click me!!"}</p>
+            </button>
+          </div>
         </div>
       </div>
+
     </div>
   );
 }

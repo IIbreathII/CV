@@ -21,8 +21,10 @@ export default function NavigationBlock() {
     }, []);
 
     return (
-        <div className={style.navigation_wrapper}>
-            <div className={style.navigation_block}>
+        <div 
+        id="navigation" 
+        className={style.navigation_wrapper}>
+            {/* <div className={style.navigation_block}>
                 <div className={style.navigation_content}>
                     <div className={style.navigation_about} >
                         <div className={style.about_content}>
@@ -64,7 +66,7 @@ export default function NavigationBlock() {
                     </div>
                 </div>
 
-            </div>
+            </div> */}
         </div>
     );
 } 

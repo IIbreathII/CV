@@ -14,12 +14,6 @@
 }
 
 
-
-
-
-
-
-
 .navigation_content {
     width: 100%;
     height: 100%;
@@ -223,7 +217,7 @@
   z-index: 3;
   opacity: 1;
   transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+} 
 
 .navigation_about:hover::before {
   top: 87%;
@@ -258,11 +252,6 @@
   border-radius: 10px;   
   display: block;
 }
-
-
-
-
-
 
 
 
