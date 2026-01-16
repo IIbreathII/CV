@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import styles from './styles/PageTransition.module.css';
 
 type Props = {
@@ -7,26 +8,72 @@ type Props = {
   children: React.ReactElement;
 };
 
-const FADE_DURATION = 400;
+const EXPAND_DURATION = 1500; // Длительность расширения
+const COLLAPSE_DURATION = 1500; // Длительность сворачивания
+const SCROLL_DELAY = 800; // Когда начинать скролл (после начала расширения)
 
 export default function Transition({ targetId, children }: Props) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const isAnimating = useRef(false);
+  const animationTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const cleanup = () => {
+    if (animationTimeout.current) {
+      clearTimeout(animationTimeout.current);
+      animationTimeout.current = null;
+    }
+    if (overlayRef.current) {
+      overlayRef.current.classList.remove(styles.triger);
+      overlayRef.current.classList.remove(styles['triger-reverse']);
+    }
+    isAnimating.current = false;
+  };
+
+  useEffect(() => {
+    return cleanup;
+  }, []);
+
   const run = () => {
-    const overlay = document.getElementById('page-transition');
+    if (isAnimating.current) return;
+
+    const overlay = overlayRef.current;
     const target = document.getElementById(targetId);
 
     if (!overlay || !target) return;
 
-    overlay.classList.add(styles.visible);
+    isAnimating.current = true;
 
-    setTimeout(() => {
-      target.scrollIntoView({ behavior: 'auto' });
-      overlay.classList.remove(styles.visible);
-    }, FADE_DURATION);
+    // 1. Запускаем анимацию расширения
+    overlay.classList.add(styles.triger);
+
+    // 2. Через SCROLL_DELAY начинаем плавный скролл к цели
+    animationTimeout.current = setTimeout(() => {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+      // 3. После завершения расширения запускаем сворачивание
+      animationTimeout.current = setTimeout(() => {
+        overlay.classList.remove(styles.triger);
+        overlay.classList.add(styles['triger-reverse']);
+
+        // 4. После завершения сворачивания сбрасываем состояние
+        animationTimeout.current = setTimeout(() => {
+          overlay.classList.remove(styles['triger-reverse']);
+          isAnimating.current = false;
+        }, COLLAPSE_DURATION);
+      }, EXPAND_DURATION - SCROLL_DELAY);
+    }, SCROLL_DELAY);
   };
 
   return (
     <>
-      <div id="page-transition" className={styles.block_transition} />
+      <div 
+        id="page-transition" 
+        ref={overlayRef}
+        className={styles.block_transition} 
+      />
       <div
         style={{ display: 'contents' }}
         onClick={run}
