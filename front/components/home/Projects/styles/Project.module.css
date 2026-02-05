@@ -1,0 +1,11 @@
+
+.project_wrapper {
+    width: 100%;
+    height: 1920px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1a22;
+    position: relative; 
+}

@@ -116,7 +116,9 @@ export default function LandingBlock() {
 
 
   return (
-    <div className={style.landing_wrapper}>
+    <div 
+    id="landing"
+    className={style.landing_wrapper}>
    
       <div className={style.page_hover} />
       <div className={style.left_side}>
@@ -139,7 +141,7 @@ export default function LandingBlock() {
           <button className={style.contact_button}>
             <span>let’s contact</span>
           </button>
-          <Transition targetId="navigation">
+          <Transition targetId="projects">
           <button className={style.navigation_button}>my skills</button>
           </Transition>
         </div>
