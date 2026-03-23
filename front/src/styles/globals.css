@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'MADEOkineSans';
+    src: url('../../public/fonts/MADEOkineSansPERSONALUSE-Black.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MADEOkineSans';
+    src: url('../../public/fonts/MADEOkineSansPERSONALUSE-Bold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MADEOkineSans';
+    src: url('../../public/fonts/MADEOkineSansPERSONALUSE-Light.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root {
+    /* Colors */
+    --color-accent: #FB3640;
+    --color-font: #F9F6EF;
+    --color-background: #F9F6EF;
+    --color-foreground: #000F08;
+
+    /* Typography */
+    --font-primary: 'MADEOkineSans', sans-serif;
+
+    --font-weight-black: 900;
+    --font-weight-bold: 700;
+    --font-weight-light: 300;
+
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+}
+
+body {
+    min-height: 100vh;
+    max-width: 1920px;
+    margin-inline: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}
+
+
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

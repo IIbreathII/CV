@@ -1,0 +1,280 @@
+/* ─────────────────────────────────────────
+   LANDING SECTION
+───────────────────────────────────────── */
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 480px;
+    margin-inline: auto;
+    padding: 12px;
+    background-color: var(--color-background);
+}
+
+
+/* ─────────────────────────────────────────
+   SHARED — единый border-radius для всех блоков
+───────────────────────────────────────── */
+
+.title_block,
+.cv_block,
+.expirience_block,
+.projects_block,
+.contact_block,
+.social_block {
+    border-radius: 10px;
+}
+
+
+/* ─────────────────────────────────────────
+   GROUP 1 — Title + CV
+───────────────────────────────────────── */
+
+.title_cv_group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.title_block {
+    background-color: var(--color-foreground);
+    padding: 20px;
+}
+
+.title_block h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: var(--color-background);
+}
+
+/* "Full Stack Developer" — акцентный span */
+.title_block h2>span:first-child {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-black);
+}
+
+/* "web with End-to-End Solutions" — светлый bold */
+.end_to_end {
+    color: var(--color-font, #F9F6EF);
+    font-weight: var(--font-weight-bold);
+}
+
+/* gif block — no styles, user will handle */
+.cv_block {
+    background-color: var(--color-foreground);
+    padding: 20px;
+    min-height: 180px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.cv_block h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    font-size: 1.25rem;
+    color: var(--color-background);
+}
+
+
+/* ─────────────────────────────────────────
+   GROUP 2 — Experience + Projects
+───────────────────────────────────────── */
+
+.expirience_projects_group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Experience */
+.expirience_block {
+    background-color: var(--color-foreground);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.expirience_block h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    font-size: 1.125rem;
+    color: var(--color-background);
+}
+
+.expirience_block p {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-background);
+}
+
+.expirience_block p span {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Projects */
+.projects_block {
+    background-color: var(--color-foreground);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.project_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project_header h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    font-size: 1.125rem;
+    color: var(--color-background);
+}
+
+.transition_icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.transition_icon::after {
+    content: '';
+    background-image: url('/icons/arrow-up-right.svg');
+    font-size: 0.875rem;
+    color: var(--color-background);
+    position: absolute;
+}
+
+.project_cards_body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* gif placeholder — user will style */
+.project_card_giff {
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 160px;
+    background-color: #1a1a1a;
+}
+
+.project_cards_body h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    font-size: 1rem;
+    color: var(--color-background);
+}
+
+/* Tech icon cards */
+.project_tech_icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech_card {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    padding: 6px 12px;
+}
+
+.tech_card img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.tech_card span {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    font-size: 0.8125rem;
+    color: var(--color-background);
+    white-space: nowrap;
+}
+
+
+/* ─────────────────────────────────────────
+   GROUP 3 — Contact + Social
+───────────────────────────────────────── */
+
+.social_contact_group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Contact */
+.contact_block {
+    background-color: var(--color-foreground);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.contact_header p {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-background);
+}
+
+
+.contact_block h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    font-size: 2rem;
+    color: var(--color-background);
+}
+
+/* Social */
+.social_block {
+    border: solid 2px var(--color-foreground);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.social_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.social_icon:hover {
+    opacity: 0.7;
+}
+
+.social_icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
