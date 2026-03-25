@@ -1,11 +1,15 @@
 /* ─────────────────────────────────────────
-   LANDING SECTION
+   LANDING SECTION — CSS Grid
+   Mobile  : 1 col × auto rows
+   Tablet  : 2 col × 5 rows (700px – 1100px)
+   Desktop : 4 col × 4 rows (1100px+)
 ───────────────────────────────────────── */
 
 .landing {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 8px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     max-width: 480px;
     margin-inline: auto;
     padding: 90px 10px 10px 10px;
@@ -14,7 +18,7 @@
 
 
 /* ─────────────────────────────────────────
-   SHARED — единый border-radius для всех блоков
+   SHARED
 ───────────────────────────────────────── */
 
 .title_block,
@@ -25,52 +29,56 @@
 .social_block {
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.57);
-
 }
 
 
 /* ─────────────────────────────────────────
-   GROUP 1 — Title + CV
+   BLOCK — Title
 ───────────────────────────────────────── */
-
-.title_cv_group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
 
 .title_block {
     background-color: var(--color-foreground);
-    padding: 20px;
+    padding: clamp(12px, 2vw, 20px);
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .title_block h2 {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-light);
-    font-size: 1.25rem;
+    /*
+      Mobile 320px  → ~1.25rem
+      Tablet 700px  → ~1.5rem
+      Desktop 1920px → 2rem
+      clamp(min, preferred, max)
+    */
+    font-size: clamp(1.25rem, 0.9rem + 0.9vw, 2rem);
     line-height: 1.3;
     color: var(--color-background);
+    max-width: 400px;
 }
 
-/* "Full Stack Developer" — акцентный span */
 .title_block h2>span:first-child {
     color: var(--color-accent);
     font-weight: var(--font-weight-black);
 }
 
-/* "web with End-to-End Solutions" — светлый bold */
 .end_to_end {
     color: var(--color-font, #F9F6EF);
     font-weight: var(--font-weight-bold);
 }
 
-/* gif block — no styles, user will handle */
+
+/* ─────────────────────────────────────────
+   BLOCK — CV Photo
+───────────────────────────────────────── */
+
 .cv_block {
     background-image: url('./assets/image/cv_photo.png');
     background-size: cover;
     background-position: center;
-    padding: 20px;
-    min-height: 180px;
+    padding: clamp(12px, 2vw, 20px);
+    min-height: clamp(160px, 25vw, 220px);
     display: flex;
     align-items: flex-end;
 }
@@ -78,57 +86,21 @@
 .cv_block h2 {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-black);
-    font-size: 1.25rem;
+    font-size: clamp(1.25rem, 0.9rem + 0.9vw, 2rem);
     color: var(--color-background);
 }
 
 
 /* ─────────────────────────────────────────
-   GROUP 2 — Experience + Projects
+   BLOCK — Projects
 ───────────────────────────────────────── */
 
-.expirience_projects_group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-/* Experience */
-.expirience_block {
-    background-color: var(--color-foreground);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.expirience_block h2 {
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-black);
-    font-size: 1.125rem;
-    color: var(--color-background);
-}
-
-.expirience_block p {
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-light);
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--color-background);
-}
-
-.expirience_block p span {
-    color: var(--color-accent);
-    font-weight: var(--font-weight-bold);
-}
-
-/* Projects */
 .projects_block {
     background-color: var(--color-foreground);
-    padding: 20px;
+    padding: clamp(12px, 2vw, 20px);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: clamp(10px, 1.5vw, 16px);
 }
 
 .project_header {
@@ -140,13 +112,14 @@
 .project_header h2 {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-black);
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 0.75rem + 0.7vw, 1.5rem);
     color: var(--color-background);
 }
 
 .transition_icon {
-    width: 28px;
-    height: 28px;
+    /* Иконка: 20px на мобиле → 28px на десктопе */
+    width: clamp(20px, 1.5vw + 14px, 28px);
+    height: clamp(20px, 1.5vw + 14px, 28px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,7 +135,6 @@
     background-position: center;
     position: absolute;
     width: 100%;
-    /* или конкретный px, например 20px */
     height: 100%;
     transform: rotate(-45deg);
 }
@@ -170,104 +142,66 @@
 .project_cards_body {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: clamp(20px, 3vw, 32px);
 }
 
-/* gif placeholder — user will style */
 .project_card_giff {
     border-radius: 12px;
     overflow: hidden;
-    min-height: 160px;
-    background-color: #1a1a1a;
+    min-height: clamp(130px, 18vw, 190px);
+    background-color: #cec8c8;
 }
 
 .project_cards_body h2 {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-black);
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 0.6rem + 0.6vw, 1.2rem);
     color: var(--color-background);
 }
 
-/* Tech icon cards */
 .project_tech_icons {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: clamp(6px, 0.8vw, 10px);
 }
 
 .tech_card {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5%;
     background-color: var(--color-background);
-    border-radius: 20px;
-    padding: 6px 12px;
+    border-radius: 40px;
+    /* Padding адаптируется: меньше на мобиле */
+    padding: clamp(6px, 0.8vw, 10px) clamp(12px, 1.5vw, 20px);
 }
 
 .tech_card img {
-    width: 18px;
-    height: 18px;
+    /* Иконка технологии: 14px на мобиле → 20px на десктопе */
+    width: clamp(14px, 1vw + 10px, 20px);
+    height: clamp(14px, 1vw + 10px, 20px);
     object-fit: contain;
 }
 
 .tech_card span {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-bold);
-    font-size: 0.8125rem;
+    font-size: clamp(0.75rem, 0.55rem + 0.5vw, 1rem);
     color: var(--color-foreground);
     white-space: nowrap;
 }
 
 
 /* ─────────────────────────────────────────
-   GROUP 3 — Contact + Social
+   BLOCK — Social
 ───────────────────────────────────────── */
 
-.social_contact_group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-/* Contact */
-.contact_block {
-    background-color: var(--color-foreground);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.contact_header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.contact_header p {
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-light);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--color-background);
-}
-
-
-.contact_block h2 {
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-black);
-    font-size: 2rem;
-    color: var(--color-background);
-}
-
-/* Social */
 .social_block {
     border: solid 2px var(--color-foreground);
-    padding: 20px;
+    padding: clamp(12px, 1.5vw, 20px);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 15%;
 }
 
 .social_icon {
@@ -283,30 +217,193 @@
 }
 
 .social_icon img {
-    width: 28px;
-    height: 28px;
+    /* Иконка соцсетей: 32px на мобиле → 48px на десктопе */
+    width: clamp(32px, 2.5vw + 20px, 45px);
+    height: clamp(32px, 2.5vw + 20px, 45px);
     object-fit: contain;
 }
 
+
+/* ─────────────────────────────────────────
+   BLOCK — Experience
+───────────────────────────────────────── */
+
+.expirience_block {
+    background-color: var(--color-foreground);
+    padding: clamp(12px, 2vw, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1vw, 12px);
+}
+
+.expirience_block h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    font-size: clamp(1.25rem, 0.9rem + 0.9vw, 2rem);
+    color: var(--color-background);
+}
+
+.expirience_block p {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    font-size: clamp(0.875rem, 0.7rem + 0.45vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-background);
+}
+
+.expirience_block p span {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
+}
+
+
+/* ─────────────────────────────────────────
+   BLOCK — Contact
+───────────────────────────────────────── */
+
+.contact_block {
+    background-color: var(--color-foreground);
+    padding: clamp(12px, 2vw, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 2vw, 24px);
+}
+
+.contact_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.contact_header p {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    font-size: clamp(0.875rem, 0.7rem + 0.45vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--color-background);
+}
+
+.contact_block h2 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    /*
+      Mobile 320px  → ~1.5rem
+      Tablet 700px  → ~1.875rem
+      Desktop 1920px → 2.5rem
+    */
+    font-size: clamp(1.5rem, 1rem + 1.3vw, 2.5rem);
+    color: var(--color-background);
+}
+
+
+/* ─────────────────────────────────────────
+   TABLET — 2 col (700px – 1100px)
+───────────────────────────────────────── */
+
 @media (min-width: 700px) and (max-width: 1100px) {
     .landing {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows:
+            minmax(250px, auto) minmax(100px, auto) minmax(60px, auto) minmax(100px, auto) minmax(60px, auto);
+
         max-width: 900px;
         padding: 90px 20px 20px 20px;
     }
 
-    .title_cv_group,
-    .expirience_projects_group,
-    .social_contact_group {
-        flex-direction: row;
-        align-items: stretch;
+    .title_block {
+        grid-column: 1;
+        grid-row: 1;
+        order: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
-    /* Каждый блок занимает половину группы */
-    .title_cv_group>*,
-    .expirience_projects_group>*,
-    .social_contact_group>* {
-        flex: 1;
-        min-width: 0;
-        /* фикс переполнения flex children */
+    .cv_block {
+        grid-column: 2;
+        grid-row: 1;
+        order: 2;
+    }
+
+    .projects_block {
+        grid-column: 1;
+        grid-row: 2 / 5;
+        order: 3;
+    }
+
+    .social_block {
+        grid-column: 1;
+        grid-row: 5;
+        order: 6;
+    }
+
+    .expirience_block {
+        grid-column: 2;
+        grid-row: 2 / 4;
+        order: 4;
+        justify-content: end;
+    }
+
+    .contact_block {
+        grid-column: 2;
+        grid-row: 4 / 6;
+        order: 5;
+        justify-content: space-between;
+    }
+}
+
+
+/* ─────────────────────────────────────────
+   DESKTOP — 4 col (1100px+)
+───────────────────────────────────────── */
+
+@media (min-width: 1100px) {
+    .landing {
+        display: grid;
+        grid-template-columns: 1fr 0.2fr 0.7fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 0.1fr;
+
+        max-width: 1920px;
+        height: 900px;
+        margin: 0 auto;
+        padding: 90px 40px 40px 40px;
+        gap: 20px;
+    }
+
+    .title_block {
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    .expirience_block {
+        grid-column: 1 / 2;
+        grid-row: 3 / 5;
+        justify-content: flex-end;
+    }
+
+    .cv_block {
+        grid-column: 3;
+        grid-row: 1 / 3;
+    }
+
+    .contact_block {
+        grid-column: 2 / 4;
+        grid-row: 3 / 5;
+        justify-content: space-between;
+    }
+
+    .projects_block {
+        grid-column: 4;
+        grid-row: 1 / 4;
+    }
+
+    .social_block {
+        grid-column: 4;
+        grid-row: 4;
     }
 }
