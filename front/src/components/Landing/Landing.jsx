@@ -42,9 +42,9 @@ function Landing() {
         <div className={styles.expirience_block}>
           <h2>Experience</h2>
           <p>
-            <span>Artem Starikov</span> is a passionate <span>Full Stack Developer</span> with <span>1.5 years</span>
+            <span>Artem Starikov</span> is a passionate <span>Full Stack Developer</span> with <span>1.5 years </span>
             of experience building open source projects.
-            <span>Based in Ukraine,</span>
+            <span> Based in Ukraine, </span>
             crafting clean <span>Frontend</span> interfaces and reliable <span>Backend</span> solutions.
           </p>
         </div>

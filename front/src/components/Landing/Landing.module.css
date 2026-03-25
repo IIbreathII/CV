@@ -8,7 +8,7 @@
     gap: 8px;
     max-width: 480px;
     margin-inline: auto;
-    padding: 12px;
+    padding: 90px 10px 10px 10px;
     background-color: var(--color-background);
 }
 
@@ -24,6 +24,8 @@
 .contact_block,
 .social_block {
     border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.57);
+
 }
 
 
@@ -64,7 +66,9 @@
 
 /* gif block — no styles, user will handle */
 .cv_block {
-    background-color: var(--color-foreground);
+    background-image: url('./assets/image/cv_photo.png');
+    background-size: cover;
+    background-position: center;
     padding: 20px;
     min-height: 180px;
     display: flex;
@@ -152,10 +156,15 @@
 
 .transition_icon::after {
     content: '';
-    background-image: url('/icons/arrow-up-right.svg');
-    font-size: 0.875rem;
-    color: var(--color-background);
+    background-image: url('./assets/ui_icons/arrow-right.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     position: absolute;
+    width: 100%;
+    /* или конкретный px, например 20px */
+    height: 100%;
+    transform: rotate(-45deg);
 }
 
 .project_cards_body {
@@ -190,7 +199,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    border: 1px solid rgb(255, 255, 255);
+    background-color: var(--color-background);
     border-radius: 20px;
     padding: 6px 12px;
 }
@@ -203,9 +212,9 @@
 
 .tech_card span {
     font-family: var(--font-primary);
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-bold);
     font-size: 0.8125rem;
-    color: var(--color-background);
+    color: var(--color-foreground);
     white-space: nowrap;
 }
 
@@ -277,4 +286,27 @@
     width: 28px;
     height: 28px;
     object-fit: contain;
+}
+
+@media (min-width: 700px) and (max-width: 1100px) {
+    .landing {
+        max-width: 900px;
+        padding: 90px 20px 20px 20px;
+    }
+
+    .title_cv_group,
+    .expirience_projects_group,
+    .social_contact_group {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    /* Каждый блок занимает половину группы */
+    .title_cv_group>*,
+    .expirience_projects_group>*,
+    .social_contact_group>* {
+        flex: 1;
+        min-width: 0;
+        /* фикс переполнения flex children */
+    }
 }

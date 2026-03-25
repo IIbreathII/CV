@@ -27,8 +27,9 @@
     /* Colors */
     --color-accent: #FB3640;
     --color-font: #F9F6EF;
-    --color-background: #F9F6EF;
+    --color-background: #ffffff;
     --color-foreground: #000F08;
+    --color-accent-white: #dde1f3;
 
     /* Typography */
     --font-primary: 'MADEOkineSans', sans-serif;

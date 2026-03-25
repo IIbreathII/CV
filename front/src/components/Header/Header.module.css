@@ -1,2 +1,206 @@
+/* Header.module.css */
+
+/* ─── Хедер ─────────────────────────────────────────────── */
 .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+    height: auto;
+
+    background: var(--color-background);
+
+    /* Фиксируем хедер поверх контента */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+
+    /* Плавное скрытие/показ */
+    transform: translateY(0);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header_hidden {
+    transform: translateY(-110%);
+}
+
+/* ─── Кнопка скачивания CV ───────────────────────────────── */
+.download_btn {
+    display: inline-block;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    color: var(--color-background);
+    background: var(--color-foreground);
+    text-decoration: none;
+    padding: 6px 18px;
+    border: 2px solid var(--color-foreground);
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease;
+    user-select: none;
+    border-radius: 30px;
+}
+
+.download_btn:hover {
+    background: var(--color-background);
+    border-color: var(--color-foreground);
+    color: var(--color-foreground);
+    transform: translateY(-2px);
+}
+
+.download_btn:active {
+    transform: translateY(0);
+}
+
+/* ─── Правый блок ────────────────────────────────────────── */
+.header_block_links {
+    display: flex;
+    align-items: center;
+}
+
+.header_block {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5% 0 5%;
+}
+
+/* ─── Десктоп навигация ──────────────────────────────────── */
+.desktop_nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav_link {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-light);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    color: var(--color-foreground);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+    transition: background-color 0.4s ease-in-out, color 0.2s ease-in-out;
+}
+
+
+.nav_link:hover {
+    background-color: var(--color-accent-white);
+}
+
+
+
+/* ─── Бургер кнопка ──────────────────────────────────────── */
+.burger_btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 201;
+    user-select: none;
+}
+
+.burger_btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--color-foreground);
+    border-radius: 3px;
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 202;
+}
+
+
+/* Анимация в крестик */
+.burger_btn_open span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.burger_btn_open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.burger_btn_open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ─── Мобильный оверлей ──────────────────────────────────── */
+.mobile_overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+
+    background: var(--color-background);
+
+    /* Скрыт за правым краем экрана */
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile_overlay_open {
+    transform: translateX(0);
+}
+
+/* ─── Мобильная навигация ────────────────────────────────── */
+.mobile_nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.mobile_nav_link {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.75rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.mobile_nav_link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.25s ease;
+}
+
+.mobile_nav_link:hover {
+    color: var(--color-accent);
+}
+
+.mobile_nav_link:hover::after {
+    width: 100%;
 }
