@@ -1,2 +1,121 @@
+.experience_wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-foreground);
+    width: 100%;
+    height: auto;
+}
+
 .experience {
+    background-color: var(--color-foreground);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-width: 420px;
+    width: 100%;
+    border-top: solid 40px var(--color-foreground);
+    padding-bottom: 30%;
+}
+
+.content_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 20px 20px 20px;
+}
+
+/* ── 1. Cover image ── */
+.coverImage {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+    object-position: center 80%;
+    /* ← картинка «прижата» к верху */
+}
+
+/* ── 2. Content block ── */
+
+
+/* ── Group 1 – Job ── */
+.job {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.jobText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.jobTitle {
+    color: var(--color-font);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.jobStack {
+    color: var(--color-font);
+    font-size: 12px;
+    font-weight: 300;
+    opacity: 0.55;
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* ── Group 2 – Text ── */
+.textGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.heading {
+    color: var(--color-font);
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.description {
+    color: var(--color-font);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.description span {
+    font-weight: 700;
+    opacity: 1;
+    color: var(--color-font);
+}
+
+/* ── Mobile reset ── */
+@media (max-width: 480px) {
+    .content {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .heading {
+        font-size: 1.6rem;
+    }
 }
