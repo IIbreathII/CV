@@ -23,64 +23,66 @@ const social_icons = [
 
 function Landing() {
   return (
-    <section className={styles.landing} id="landing">
+    <section className={styles.landing_wrapper} id="landing">
+      <div className={styles.landing}>
 
-      <div className={styles.title_block}>
-        <h2>
-          <span>Full Stack Developer</span> <br />Redefining
-          <span className={styles.end_to_end}> web with End-to-End Solutions</span>
-        </h2>
-      </div>
-
-      <div className={styles.cv_block}>
-        <h2>Download CV</h2>
-      </div>
-
-      <div className={styles.projects_block}>
-        <div className={styles.project_header}>
-          <h2>Recent Projects</h2>
-          <div className={styles.transition_icon}></div>
+        <div className={styles.title_block}>
+          <h2>
+            <span>Full Stack Developer</span> <br />Redefining
+            <span className={styles.end_to_end}> web with End-to-End Solutions</span>
+          </h2>
         </div>
-        <div className={styles.project_cards_body}>
-          <div className={styles.project_card_giff}></div>
-          <h2>{project_title}</h2>
-          <div className={styles.project_tech_icons}>
-            {project_tech_icons.map((tech) => (
-              <div key={tech.name} className={styles.tech_card}>
-                {tech.icon && <img src={tech.icon} alt={tech.name} />}
-                <span>{tech.name}</span>
-              </div>
-            ))}
+
+        <div className={styles.cv_block}>
+          <h2>Download CV</h2>
+        </div>
+
+        <div className={styles.projects_block}>
+          <div className={styles.project_header}>
+            <h2>Recent Projects</h2>
+            <div className={styles.transition_icon}></div>
+          </div>
+          <div className={styles.project_cards_body}>
+            <div className={styles.project_card_giff}></div>
+            <h2>{project_title}</h2>
+            <div className={styles.project_tech_icons}>
+              {project_tech_icons.map((tech) => (
+                <div key={tech.name} className={styles.tech_card}>
+                  {tech.icon && <img src={tech.icon} alt={tech.name} />}
+                  <span>{tech.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className={styles.expirience_block}>
-        <h2>Experience</h2>
-        <p>
-          <span>Artem Starikov</span> is a passionate <span>Full Stack Developer</span> with <span>1.5 years </span>
-          of experience building open source projects.
-          <span> Based in Ukraine, </span>
-          crafting clean <span>Frontend</span> interfaces and reliable <span>Backend</span> solutions.
-        </p>
-      </div>
-
-      <div className={styles.contact_block}>
-        <div className={styles.contact_header}>
-          <p>Let's work together, <br />Just click!</p>
-          <div className={styles.transition_icon}></div>
+        <div className={styles.expirience_block}>
+          <h2>Experience</h2>
+          <p>
+            <span>Artem Starikov</span> is a passionate <span>Full Stack Developer</span> with <span>1.5 years </span>
+            of experience building open source projects.
+            <span> Based in Ukraine, </span>
+            crafting clean <span>Frontend</span> interfaces and reliable <span>Backend</span> solutions.
+          </p>
         </div>
-        <h2>Contact</h2>
-      </div>
 
-      <div className={styles.social_block}>
-        {social_icons.map((icon) => (
-          <div key={icon.name} className={styles.social_icon}>
-            <img src={icon.icon} alt={icon.name} />
+        <div className={styles.contact_block}>
+          <div className={styles.contact_header}>
+            <p>Let's work together, <br />Just click!</p>
+            <div className={styles.transition_icon}></div>
           </div>
-        ))}
-      </div>
+          <h2>Contact</h2>
+        </div>
 
+        <div className={styles.social_block}>
+          {social_icons.map((icon) => (
+            <div key={icon.name} className={styles.social_icon}>
+              <img src={icon.icon} alt={icon.name} />
+            </div>
+          ))}
+        </div>
+
+      </div>
     </section>
   )
 }

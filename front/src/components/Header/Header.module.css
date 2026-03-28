@@ -60,6 +60,7 @@
 .header_block_links {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .header_block {
@@ -70,7 +71,7 @@
     height: auto;
     align-items: center;
     justify-content: space-between;
-    padding: 1% 2% 0 2%;
+    padding: 0 2%
 }
 
 /* ─── Десктоп навигация ──────────────────────────────────── */

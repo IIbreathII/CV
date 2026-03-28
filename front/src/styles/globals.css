@@ -1,26 +1,5 @@
-@font-face {
-    font-family: 'MADEOkineSans';
-    src: url('../../public/fonts/MADEOkineSansPERSONALUSE-Black.otf') format('opentype');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
 
-@font-face {
-    font-family: 'MADEOkineSans';
-    src: url('../../public/fonts/MADEOkineSansPERSONALUSE-Bold.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'MADEOkineSans';
-    src: url('../../public/fonts/MADEOkineSansPERSONALUSE-Light.otf') format('opentype');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
-}
 
 
 :root {
@@ -32,7 +11,7 @@
     --color-accent-white: #dde1f3;
 
     /* Typography */
-    --font-primary: 'MADEOkineSans', sans-serif;
+    --font-primary: 'Inter', sans-serif;
 
     --font-weight-black: 900;
     --font-weight-bold: 700;
@@ -88,7 +67,6 @@ html {
 
 body {
     min-height: 100vh;
-    max-width: 1920px;
     margin-inline: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

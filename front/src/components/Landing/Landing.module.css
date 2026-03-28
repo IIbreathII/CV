@@ -5,15 +5,29 @@
    Desktop : 4 col × 4 rows (1100px+)
 ───────────────────────────────────────── */
 
+.landing_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+
 .landing {
     display: grid;
     gap: 8px;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     max-width: 480px;
+    width: 100%;
     margin-inline: auto;
-    padding: 90px 10px 10px 10px;
-    background-color: var(--color-background);
+    padding: 40px 10px 10px 10px;
 }
 
 

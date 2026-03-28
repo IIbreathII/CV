@@ -1,0 +1,132 @@
+.projectCard {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: 100%;
+}
+
+/* --- Левая часть --- */
+.infoBlock {
+    flex: 0 0 45%;
+    /* Занимает 45% ширины */
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    color: var(--color-foreground);
+}
+
+.description {
+    font-size: 1.4rem;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Списки технологий (Пилюли) */
+.techList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+}
+
+.techItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #E2E2E2;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+}
+
+.techIcon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+
+.mediaBlock {
+    flex: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background-color: #D9D9D9;
+}
+
+.gifImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    /* Отбиваем от списка технологий */
+}
+
+.socialLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    /* Делаем круглые кнопки, если нужно */
+    background-color: #E2E2E2;
+    /* Светло-серый фон, как у технологий */
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    text-decoration: none;
+}
+
+.socialLink:hover {
+    transform: translateY(-4px);
+    /* Легкое "подпрыгивание" при наведении */
+    background-color: #D4D4D4;
+    /* Чуть темнеет при наведении */
+}
+
+.socialIcon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* --- Адаптив --- */
+@media (max-width: 992px) {
+    .projectCard {
+        flex-direction: column;
+        /* На мобилках блоки идут друг под другом */
+        gap: 2rem;
+    }
+
+    .infoBlock {
+        flex: none;
+        width: 100%;
+        order: 2;
+        /* На мобилках лучше показывать текст под картинкой */
+    }
+
+    .mediaBlock {
+        flex: none;
+        width: 100%;
+        order: 1;
+        /* Картинка сверху */
+    }
+}

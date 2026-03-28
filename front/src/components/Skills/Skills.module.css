@@ -1,2 +1,7 @@
 .skills {
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
 }

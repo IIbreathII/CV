@@ -1,2 +1,47 @@
-.projects {
+.projectsSection {
+    width: 100%;
+    background-color: var(--color-background);
+    padding: 6rem 0;
+    position: relative;
+    z-index: 4;
+}
+
+.container {
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10%;
+}
+
+.sectionTitle {
+    text-align: start;
+    font-size: 3.5rem;
+    font-weight: 800;
+    /* Extra Bold */
+    margin-bottom: 5rem;
+    color: var(--color-foreground);
+    /* Черный цвет текста */
+}
+
+.projectsList {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    /* Большое расстояние между проектами */
+}
+
+/* Адаптив */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 5%;
+    }
+
+    .sectionTitle {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .projectsList {
+        gap: 4rem;
+    }
 }
