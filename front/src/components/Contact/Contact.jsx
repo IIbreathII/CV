@@ -1,10 +1,99 @@
-import styles from './Contact.module.css'
+import { useState } from 'react';
+import { useContactForm } from './hooks/useContactForm';
+import styles from './Contact.module.css';
 
 function Contact() {
+  const [copied, setCopied] = useState(false);
+  const { fields, status, handleChange, handleSubmit } = useContactForm();
+
+  const email = 'artemstarik7@gmail.com';
+
+  const contactLinks = [
+    { id: 1, name: 'llbreathll', url: 'https://github.com/IIbreathII', iconSrc: './assets/social_icons/discord.png', iconAlt: 'Discord' },
+    { id: 3, name: 'githubuser831', url: 'https://github.com/IIbreathII', iconSrc: './assets/social_icons/github.png', iconAlt: 'GitHub' },
+    { id: 4, name: 'Linked In', url: 'https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D0%B5%D0%BC-%D1%81%D1%82%D0%B0%D1%80%D0%B8%D0%BA%D0%BE%D0%B2-92a300360/', iconSrc: './assets/social_icons/linkedin.png', iconAlt: 'LinkedIn' },
+  ];
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section className={styles.contact} id="contact">
+
+      <div className={styles.leftSide}>
+        <div className={styles.formContainer}>
+          <h2 className={styles.title}>Get in touch</h2>
+          <p className={styles.subtitle}>
+            Feel free to contact me any time. I will get back to you as soon as possible!
+          </p>
+
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              value={fields.name}
+              onChange={handleChange}
+              placeholder="Name"
+              className={styles.inputField}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              value={fields.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className={styles.inputField}
+              required
+            />
+            <textarea
+              name="message"
+              value={fields.message}
+              onChange={handleChange}
+              placeholder="message"
+              className={styles.textArea}
+              required
+            />
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={status === 'loading'}
+            >
+              {status === 'loading' && 'Sending...'}
+              {status === 'success' && 'Sent!'}
+              {status === 'error' && 'Error, try again'}
+              {status === 'idle' && 'Submit'}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className={styles.rightSide}>
+        <div className={styles.linksContainer}>
+
+          <div
+            className={`${styles.linkItem} ${styles.emailBlock} ${copied ? styles.copied : ''}`}
+            onClick={handleCopy}
+          >
+            <img src="./assets/social_icons/email.png" alt="Email" className={styles.icon} />
+            <span className={styles.linkText}>{copied ? 'Copied!' : email}</span>
+          </div>
+
+          {contactLinks.map((link) => (
+            <a key={link.id} href={link.url} className={styles.linkItem} target="_blank" rel="noreferrer">
+              <img src={link.iconSrc} alt={link.iconAlt} className={styles.icon} />
+              <span className={styles.linkText}>{link.name}</span>
+            </a>
+          ))}
+
+        </div>
+      </div>
+
     </section>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

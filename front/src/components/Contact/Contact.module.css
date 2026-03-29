@@ -1,2 +1,167 @@
+/* --- Главная обёртка --- */
 .contact {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    /* Занимает всю высоту экрана */
+    flex-direction: row;
+    position: relative;
+    z-index: 4;
+}
+
+/* --- Левая часть (Форма) --- */
+.leftSide {
+    flex: 1;
+    /* Занимает 50% пространства */
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 10%;
+    box-sizing: border-box;
+}
+
+.formContainer {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: clamp(3rem, 4vw, 4.5rem);
+    font-weight: 800;
+    color: #000;
+    margin: 0 0 16px 0;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #000;
+    margin: 0 0 40px 0;
+    max-width: 85%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* Отступы между полями */
+}
+
+/* Стилизация инпутов с нижней линией */
+.inputField,
+.textArea {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #000;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    font-family: inherit;
+    color: #000;
+    background: transparent;
+    outline: none;
+}
+
+.textArea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.inputField::placeholder,
+.textArea::placeholder {
+    color: #666;
+}
+
+.submitBtn {
+    background-color: #000;
+    color: #FFF;
+    border: none;
+    padding: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.2s ease;
+}
+
+.submitBtn:hover {
+    opacity: 0.8;
+}
+
+/* --- Правая часть (Соцсети) --- */
+.rightSide {
+    flex: 1;
+    /* Занимает вторые 50% */
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 10%;
+    box-sizing: border-box;
+}
+
+.linksContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    /* Расстояние между ссылками */
+    width: 100%;
+    max-width: 400px;
+}
+
+.linkItem {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    text-decoration: none;
+    color: #FFF;
+    transition: transform 0.2s ease;
+}
+
+.linkItem:hover {
+    transform: translateX(10px);
+    /* Легкий эффект сдвига при наведении */
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    filter: invert(1);
+}
+
+.linkText {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+
+.copyBtn:hover {
+    background: #FFF;
+    color: #000;
+}
+
+
+/* --- Адаптив для планшетов и телефонов --- */
+@media (max-width: 1100px) {
+    .contact {
+        flex-direction: column;
+        /* Ставим блоки друг под друга */
+        min-height: auto;
+    }
+
+    .leftSide,
+    .rightSide {
+        padding: 60px 20px;
+    }
+
+    .formContainer,
+    .linksContainer {
+        max-width: 100%;
+    }
 }
