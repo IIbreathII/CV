@@ -4,11 +4,6 @@
     justify-content: center;
     background-color: var(--color-foreground);
     width: 100%;
-
-    /* Магия прилипания */
-    position: sticky;
-    top: 0;
-    z-index: 2;
     box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.15);
 }
 

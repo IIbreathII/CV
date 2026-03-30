@@ -21,77 +21,77 @@ function Contact() {
   };
 
   return (
-    <section className={styles.contact} id="contact">
+    <section className={styles.contactWrapper} id="contact">
+      <div className={styles.contactContainer}>
 
-      <div className={styles.leftSide}>
-        <div className={styles.formContainer}>
-          <h2 className={styles.title}>Get in touch</h2>
-          <p className={styles.subtitle}>
-            Feel free to contact me any time. I will get back to you as soon as possible!
-          </p>
+        <div className={styles.leftSide}>
+          <div className={styles.formContainer}>
+            <h2 className={styles.title}>Get in touch</h2>
+            <p className={styles.subtitle}>
+              Feel free to contact me any time. I will get back to you as soon as possible!
+            </p>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              value={fields.name}
-              onChange={handleChange}
-              placeholder="Name"
-              className={styles.inputField}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              value={fields.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className={styles.inputField}
-              required
-            />
-            <textarea
-              name="message"
-              value={fields.message}
-              onChange={handleChange}
-              placeholder="message"
-              className={styles.textArea}
-              required
-            />
-            <button
-              type="submit"
-              className={styles.submitBtn}
-              disabled={status === 'loading'}
-            >
-              {status === 'loading' && 'Sending...'}
-              {status === 'success' && 'Sent!'}
-              {status === 'error' && 'Error, try again'}
-              {status === 'idle' && 'Submit'}
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div className={styles.rightSide}>
-        <div className={styles.linksContainer}>
-
-          <div
-            className={`${styles.linkItem} ${styles.emailBlock} ${copied ? styles.copied : ''}`}
-            onClick={handleCopy}
-          >
-            <img src="./assets/social_icons/email.png" alt="Email" className={styles.icon} />
-            <span className={styles.linkText}>{copied ? 'Copied!' : email}</span>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                value={fields.name}
+                onChange={handleChange}
+                placeholder="Name"
+                className={styles.inputField}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                value={fields.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className={styles.inputField}
+                required
+              />
+              <textarea
+                name="message"
+                value={fields.message}
+                onChange={handleChange}
+                placeholder="message"
+                className={styles.textArea}
+                required
+              />
+              <button
+                type="submit"
+                className={styles.submitBtn}
+                disabled={status === 'loading'}
+              >
+                {status === 'loading' && 'Sending...'}
+                {status === 'success' && 'Sent!'}
+                {status === 'error' && 'Error, try again'}
+                {status === 'idle' && 'Submit'}
+              </button>
+            </form>
           </div>
-
-          {contactLinks.map((link) => (
-            <a key={link.id} href={link.url} className={styles.linkItem} target="_blank" rel="noreferrer">
-              <img src={link.iconSrc} alt={link.iconAlt} className={styles.icon} />
-              <span className={styles.linkText}>{link.name}</span>
-            </a>
-          ))}
-
         </div>
-      </div>
 
+        <div className={styles.rightSide}>
+          <div className={styles.linksContainer}>
+            <div
+              className={`${styles.linkItem} ${styles.emailBlock} ${copied ? styles.copied : ''}`}
+              onClick={handleCopy}
+            >
+              <img src="./assets/social_icons/email.png" alt="Email" className={styles.icon} />
+              <span className={styles.linkText}>{copied ? 'Copied!' : email}</span>
+            </div>
+
+            {contactLinks.map((link) => (
+              <a key={link.id} href={link.url} className={styles.linkItem} target="_blank" rel="noreferrer">
+                <img src={link.iconSrc} alt={link.iconAlt} className={styles.icon} />
+                <span className={styles.linkText}>{link.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+      </div>
     </section>
   );
 }

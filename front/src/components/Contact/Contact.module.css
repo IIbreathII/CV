@@ -1,19 +1,25 @@
 /* --- Главная обёртка --- */
-.contact {
-    display: flex;
+.contactWrapper {
     width: 100%;
     min-height: 100vh;
-    /* Занимает всю высоту экрана */
+    display: flex;
+    background: linear-gradient(to right, #FFFFFF 50%, #000000 50%);
+}
+
+/* --- Внутренний контейнер --- */
+.contactContainer {
+    width: 100%;
+    max-width: 1440px;
+    /* Ограничиваем контент. Можешь поменять значение под свой макет */
+    margin: 0 auto;
+    display: flex;
     flex-direction: row;
-    position: relative;
-    z-index: 4;
 }
 
 /* --- Левая часть (Форма) --- */
 .leftSide {
     flex: 1;
-    /* Занимает 50% пространства */
-    background-color: #FFFFFF;
+    /* Убрали background-color: #FFFFFF, так как он теперь на обертке */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +54,6 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    /* Отступы между полями */
 }
 
 /* Стилизация инпутов с нижней линией */
@@ -94,8 +99,7 @@
 /* --- Правая часть (Соцсети) --- */
 .rightSide {
     flex: 1;
-    /* Занимает вторые 50% */
-    background-color: #000000;
+    /* Убрали background-color: #000000, так как он теперь на обертке */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,7 +111,6 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    /* Расстояние между ссылками */
     width: 100%;
     max-width: 400px;
 }
@@ -119,16 +122,17 @@
     text-decoration: none;
     color: #FFF;
     transition: transform 0.2s ease;
+    cursor: pointer;
+    min-width: 0;
 }
 
 .linkItem:hover {
     transform: translateX(10px);
-    /* Легкий эффект сдвига при наведении */
 }
 
 .icon {
-    width: 60px;
-    height: 60px;
+    width: clamp(36px, 5vw, 60px);
+    height: clamp(36px, 5vw, 60px);
     border-radius: 50%;
     flex-shrink: 0;
     object-fit: cover;
@@ -136,27 +140,40 @@
 }
 
 .linkText {
-    font-size: 1.3rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.3rem);
     font-weight: 700;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
 }
 
-
-.copyBtn:hover {
-    background: #FFF;
-    color: #000;
+/* Эффект для скопированного email */
+.copied {
+    color: #4ade80;
+    /* Зеленый цвет текста при успешном копировании */
 }
-
 
 /* --- Адаптив для планшетов и телефонов --- */
 @media (max-width: 1100px) {
-    .contact {
-        flex-direction: column;
-        /* Ставим блоки друг под друга */
+    .contactWrapper {
+        /* Убираем градиент на мобильных, так как блоки встанут друг под друга */
+        background: none;
         min-height: auto;
     }
 
-    .leftSide,
+    .contactContainer {
+        flex-direction: column;
+    }
+
+    .leftSide {
+        background-color: #FFFFFF;
+        /* Возвращаем фон самому блоку */
+        padding: 60px 20px;
+    }
+
     .rightSide {
+        background-color: #000000;
+        /* Возвращаем фон самому блоку */
         padding: 60px 20px;
     }
 
