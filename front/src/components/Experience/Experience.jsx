@@ -1,8 +1,18 @@
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import styles from './Experience.module.css'
 
+const fadeLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0 },
+}
+
 function Experience() {
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
+
   return (
-    <section className={styles.experience_wrapper} id="experience">
+    <section className={styles.experience_wrapper} id="experience" ref={sectionRef}>
       <div className={styles.experience}>
         <img
           src="./assets/image/bunny.png"
@@ -11,14 +21,28 @@ function Experience() {
         />
         <div className={styles.content_wrapper}>
           <div className={styles.contentInner}>
-            <div className={styles.job}>
+
+            <motion.div
+              className={styles.job}
+              variants={fadeLeft}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+            >
               <div className={styles.avatarWrapper} />
               <div className={styles.jobText}>
                 <p className={styles.jobTitle}>Full stack developer</p>
                 <p className={styles.jobStack}>node.js core stack</p>
               </div>
-            </div>
-            <div className={styles.textGroup}>
+            </motion.div>
+
+            <motion.div
+              className={styles.textGroup}
+              variants={fadeLeft}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.25 }}
+            >
               <h2 className={styles.heading}>My Experience</h2>
               <p className={styles.description}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -29,7 +53,8 @@ function Experience() {
                 containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
                 including versions of Lorem Ipsu
               </p>
-            </div>
+            </motion.div>
+
           </div>
         </div>
       </div>
