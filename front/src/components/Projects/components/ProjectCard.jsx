@@ -1,18 +1,64 @@
+import { motion } from 'framer-motion'
 import styles from './styles/ProjectCard.module.css'
 
-function ProjectCard({ title, description, gifUrl, technologies, socialLinks }) {
+const fromLeft = {
+    hidden: { opacity: 0, x: -40 },
+    visible: { opacity: 1, x: 0 }
+}
+
+const fromRight = {
+    hidden: { opacity: 0, x: 40 },
+    visible: { opacity: 1, x: 0 }
+}
+
+const container = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+}
+
+function ProjectCard({ title, description, gifUrl, technologies, socialLinks, projectLink }) {
     return (
-        <article className={styles.projectCard}>
+        <motion.article
+            className={styles.projectCard}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+        >
+            <motion.div
+                className={styles.infoBlock}
+                variants={container}
+            >
+                <motion.h3
+                    className={styles.title}
+                    variants={fromLeft}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                >
+                    {title}
+                </motion.h3>
 
-            {/* Левая часть: Инфо */}
-            <div className={styles.infoBlock}>
-                <h3 className={styles.title}>{title}</h3>
-                <p className={styles.description}>{description}</p>
+                <motion.p
+                    className={styles.description}
+                    variants={fromLeft}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                >
+                    {description}
+                </motion.p>
 
-                <ul className={styles.techList}>
+                <motion.ul
+                    className={styles.techList}
+                    variants={container}
+                >
                     {technologies.map((tech, index) => (
-                        <li key={index} className={styles.techItem}>
-                            {/* Рендерим картинку только если icon не null */}
+                        <motion.li
+                            key={index}
+                            className={styles.techItem}
+                            variants={fromLeft}
+                            transition={{ duration: 0.4, ease: 'easeOut' }}
+                        >
                             {tech.icon && (
                                 <img
                                     src={tech.icon}
@@ -21,17 +67,22 @@ function ProjectCard({ title, description, gifUrl, technologies, socialLinks }) 
                                 />
                             )}
                             <span className={styles.techName}>{tech.name}</span>
-                        </li>
+                        </motion.li>
                     ))}
-                </ul>
+                </motion.ul>
+
                 {socialLinks && socialLinks.length > 0 && (
-                    <div className={styles.socialLinks}>
+                    <motion.div
+                        className={styles.socialLinks}
+                        variants={fromLeft}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                    >
                         {socialLinks.map((link, index) => (
                             <a
                                 key={index}
                                 href={link.url}
                                 target="_blank"
-                                rel="noopener noreferrer" /* Безопасность при открытии в новой вкладке */
+                                rel="noopener noreferrer"
                                 className={styles.socialLink}
                                 aria-label={`Link to project on ${link.name || 'external site'}`}
                             >
@@ -42,20 +93,28 @@ function ProjectCard({ title, description, gifUrl, technologies, socialLinks }) 
                                 />
                             </a>
                         ))}
-                    </div>
+                    </motion.div>
                 )}
-            </div>
+            </motion.div>
 
-            {/* Правая часть: Медиа/Гифка */}
-            <div className={styles.mediaBlock}>
+            <motion.a
+                href={projectLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'block' }}
+                className={styles.mediaBlock}
+                variants={fromRight}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                whileHover={{ y: -6, scale: 1.02 }}
+            >
                 {gifUrl ? (
                     <img src={gifUrl} alt={`${title} preview`} className={styles.gifImage} />
                 ) : (
                     <div className={styles.placeholder}></div>
                 )}
-            </div>
+            </motion.a>
 
-        </article>
+        </motion.article >
     )
 }
 

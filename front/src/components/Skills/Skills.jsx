@@ -16,7 +16,7 @@ const skillsData = [
     number: "02",
     title: "Backend",
     text: "Creating robust and scalable server-side applications and APIs.",
-    technologies: ["Node.js", "NestJS", "Express", "PostgreSQL", "Redis"],
+    technologies: ["Node.js", "NestJS", "Express", "PostgreSQL", "Redis", "MySQL"],
     bgColor: "var(--color-accent)",
     textColor: "var(--color-background)"
   },

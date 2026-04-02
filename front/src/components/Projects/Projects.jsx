@@ -7,6 +7,7 @@ const projectsData = [
     title: "Teams Schedule Helper",
     description: "An open source platform for managing teams and scheduling meetings directly integrated with Microsoft Teams.",
     gifUrl: "./assets/project_preview/schedule.png",
+    gifLink: "https://github.com/orgs/Horizon-Office/repositories",
     technologies: [
       { name: "Azure", icon: "./assets/tech_icons/Microsoft_Azure.png" },
       { name: "Microsoft graph", icon: "./assets/tech_icons/Microsoft_graph.png" },
@@ -24,6 +25,7 @@ const projectsData = [
     title: "Shveina rota",
     description: "A volunteer platform supporting the Ukrainian military by coordinating the production and delivery of handmade clothing and gear.",
     gifUrl: "./assets/project_preview/Shveya.png",
+    gifLink: "https://shveinarota.org/en",
     technologies: [
       { name: "Next.js", icon: "./assets/tech_icons/white/next.png" },
       { name: "Nest.js", icon: "./assets/tech_icons/nest.png" },
@@ -39,7 +41,6 @@ function Projects() {
     <section className={styles.projectsSection} id="projects">
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>Recent Projects</h2>
-
         <div className={styles.projectsList}>
           {projectsData.map((project) => (
             <ProjectCard
@@ -47,6 +48,7 @@ function Projects() {
               title={project.title}
               description={project.description}
               gifUrl={project.gifUrl}
+              projectLink={project.gifLink}
               technologies={project.technologies}
               socialLinks={project.socialLinks}
             />
