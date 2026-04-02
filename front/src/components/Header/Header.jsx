@@ -1,4 +1,3 @@
-// Header.jsx
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useMediaQuery } from './hook/useMediaQuery';
@@ -7,9 +6,9 @@ import styles from './Header.module.css';
 const NAV_LINKS = [
   { label: 'LANDING', href: '#landing' },
   { label: 'EXPERIENCE', href: '#experience' },
-  { label: 'TECH STACK', href: '#tech-stack' },
+  { label: 'TECH STACK', href: '#skills' },
   { label: 'PROJECTS', href: '#projects' },
-  { label: 'CONTACTS', href: '#contacts' },
+  { label: 'CONTACTS', href: '#contact' },
 ];
 
 const DesktopNav = () => (
@@ -27,20 +26,69 @@ const Header = () => {
   const [hidden, setHidden] = useState(false);
   const isDesktop = useMediaQuery('(min-width: 900px)');
   const lastScrollY = useRef(0);
+  const isAnchorNavRef = useRef(false);
+  const scrollEndTimer = useRef(null);
 
   const toggleMenu = () => setIsMenuOpen(p => !p);
 
-  // Блокируем скролл при открытом меню
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
 
-  // Скрываем хедер при скролле вниз
+  useEffect(() => {
+    const onScrollEnd = () => {
+      clearTimeout(scrollEndTimer.current);
+      scrollEndTimer.current = setTimeout(() => {
+        isAnchorNavRef.current = false;
+        lastScrollY.current = window.scrollY;
+        window.removeEventListener('scroll', onScrollEnd);
+      }, 150);
+    };
+
+    const handleAnchorClick = (e) => {
+      const href = e.currentTarget.getAttribute('href');
+
+      // #landing — всегда в самый верх
+      if (href === '#landing') {
+        e.preventDefault();
+        isAnchorNavRef.current = true;
+        setHidden(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.addEventListener('scroll', onScrollEnd, { passive: true });
+        return;
+      }
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      isAnchorNavRef.current = true;
+      setHidden(false);
+      window.addEventListener('scroll', onScrollEnd, { passive: true });
+    };
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', handleAnchorClick);
+    });
+
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.removeEventListener('click', handleAnchorClick);
+      });
+      clearTimeout(scrollEndTimer.current);
+    };
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
+      if (isAnchorNavRef.current) return;
+
       const currentY = window.scrollY;
-      if (currentY > lastScrollY.current && currentY > 60) {
+      const delta = currentY - lastScrollY.current;
+
+      if (Math.abs(delta) < 5) return;
+
+      if (delta > 0 && currentY > 60) {
         setHidden(true);
       } else {
         setHidden(false);
@@ -61,7 +109,6 @@ const Header = () => {
               Download CV
             </a>
           </div>
-
           <div className={styles.header_block_links}>
             {isDesktop
               ? <DesktopNav />
