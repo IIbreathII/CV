@@ -31,8 +31,8 @@ const fadeUp = {
 }
 
 const liftHover = {
-  rest: { y: 0, scale: 1 },
-  hover: { y: -6, scale: 1.02, transition: { duration: 0.22, ease: 'easeOut' } },
+  rest: { y: 0, scale: 0.5 },
+  hover: { y: -3, scale: 1.02, transition: { duration: 0.22, ease: 'easeOut' } },
 }
 
 

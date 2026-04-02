@@ -71,30 +71,46 @@ function AnimatedTitle() {
     const { displayed, done, currentSegIdx } = useTypingCycle(SEGMENT_SETS)
 
     return (
-        <h2>
-            <span>
-                {displayed[0].visible}
-                {!done && currentSegIdx === 0 && <Cursor />}
-            </span>
+        // Контейнер Grid заставляет дочерние элементы накладываться друг на друга
+        <div style={{ display: 'grid' }}>
 
-            {displayed[1].visible && <br />}
+            {/* 1. ЭЛЕМЕНТ-ПРИЗРАК (Ghost Element) */}
+            {/* Он рендерит самый длинный блок текста (SEGMENT_SETS[0]). */}
+            {/* visibility: 'hidden' скрывает его визуально, но оставляет его физические размеры */}
+            <h2 style={{ visibility: 'hidden', gridArea: '1 / 1', margin: 0, pointerEvents: 'none' }}>
+                <span>{SEGMENT_SETS[0][0].text}</span>
+                <br />
+                <span>{SEGMENT_SETS[0][2].text}</span>
+                <span className={styles.end_to_end}>{SEGMENT_SETS[0][3].text}</span>
+            </h2>
 
-            {displayed[2].visible && (
-                <span className={displayed[2].style === 'end_to_end' ? styles.end_to_end : undefined}>
-                    {displayed[2].visible}
-                    {!done && currentSegIdx === 2 && <Cursor />}
+            {/* 2. АНИМИРОВАННЫЙ БЛОК */}
+            {/* gridArea: '1 / 1' помещает его ровно поверх призрака */}
+            <h2 style={{ gridArea: '1 / 1', margin: 0 }}>
+                <span>
+                    {displayed[0].visible}
+                    {!done && currentSegIdx === 0 && <Cursor />}
                 </span>
-            )}
 
-            {displayed[3].visible && (
-                <span className={displayed[3].style === 'end_to_end' ? styles.end_to_end : undefined}>
-                    {displayed[3].visible}
-                    {!done && currentSegIdx === 3 && <Cursor />}
-                </span>
-            )}
+                {displayed[1].visible && <br />}
 
-            {done && <Cursor />}
-        </h2>
+                {displayed[2].visible && (
+                    <span className={displayed[2].style === 'end_to_end' ? styles.end_to_end : undefined}>
+                        {displayed[2].visible}
+                        {!done && currentSegIdx === 2 && <Cursor />}
+                    </span>
+                )}
+
+                {displayed[3].visible && (
+                    <span className={displayed[3].style === 'end_to_end' ? styles.end_to_end : undefined}>
+                        {displayed[3].visible}
+                        {!done && currentSegIdx === 3 && <Cursor />}
+                    </span>
+                )}
+
+                {done && <Cursor />}
+            </h2>
+        </div>
     )
 }
 

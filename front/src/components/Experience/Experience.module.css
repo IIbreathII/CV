@@ -21,8 +21,9 @@
 /* ── 1. Cover image ── */
 .coverImage {
     width: 100%;
-    min-height: 40vh;
-    /* ← явная высота вместо flex */
+    height: 40vh;
+    max-height: 450px;
+    /* Чтобы картинка не занимала весь планшет в высоту */
     object-fit: cover;
     display: block;
     flex-shrink: 0;
@@ -211,8 +212,10 @@
     }
 
     .coverImage {
+        flex: 0 0 45%;
         width: 45%;
-        /* ← картинка 45% */
+        height: auto;
+        max-height: none;
         min-height: 100%;
         min-width: 0;
         flex-shrink: 0;
