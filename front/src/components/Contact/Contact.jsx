@@ -12,7 +12,7 @@ function Contact() {
     { id: 1, name: 'Discord', url: 'https://discord.com/users/1471826882096926720', iconSrc: './assets/social_icons/discord.png', iconAlt: 'Discord' },
     { id: 3, name: 'GitHub', url: 'https://github.com/IIbreathII', iconSrc: './assets/social_icons/github.png', iconAlt: 'GitHub' },
     { id: 4, name: 'LinkedIn', url: 'https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D0%B5%D0%BC-%D1%81%D1%82%D0%B0%D1%80%D0%B8%D0%BA%D0%BE%D0%B2-92a300360/', iconSrc: './assets/social_icons/linkedin.png', iconAlt: 'LinkedIn' },
-    { id: 4, name: 'Telegram', url: 'https://t.me/Temastarichok', iconSrc: './assets/social_icons/telegram.png', iconAlt: 'Telegram' },
+    { id: 5, name: 'Telegram', url: 'https://t.me/Temastarichok', iconSrc: './assets/social_icons/telegram.png', iconAlt: 'Telegram' },
   ];
 
   const handleCopy = () => {
