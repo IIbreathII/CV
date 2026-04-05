@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { label: 'EXPERIENCE', href: '#experience' },
   { label: 'TECH STACK', href: '#skills' },
   { label: 'PROJECTS', href: '#projects' },
-  { label: 'CONTACTS', href: '#contact' },
+  { label: 'CONTACT ME', href: '#contact' },
 ];
 
 const DesktopNav = () => (
