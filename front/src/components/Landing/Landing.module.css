@@ -82,7 +82,7 @@
 /* ─── CV ───────────────────────────────── */
 
 .cv_block {
-    background-image: url('./assets/image/cvphoto.png');
+    background-image: url('/assets/image/cvphoto.png');
     background-size: cover;
     background-position: center;
     padding: clamp(12px, 2vw, 20px);

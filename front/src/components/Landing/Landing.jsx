@@ -3,22 +3,22 @@ import AnimatedTitle from './compotent/AnimatedTitle'
 import { motion } from 'framer-motion'
 
 const project_tech_icons = [
-  { name: 'Azure', icon: './assets/tech_icons/Microsoft_Azure.png' },
-  { name: 'Next', icon: './assets/tech_icons/next.png' },
-  { name: 'Microsoft Graph', icon: './assets/tech_icons/Microsoft_graph.png' },
-  { name: 'Nest', icon: './assets/tech_icons/nest.png' },
-  { name: 'Tailwind', icon: './assets/tech_icons/tailwind.png' },
-  { name: 'Typescript', icon: './assets/tech_icons/typescript.png' },
+  { name: 'Azure', icon: '/assets/tech_icons/Microsoft_Azure.png' },
+  { name: 'Next', icon: '/assets/tech_icons/next.png' },
+  { name: 'Microsoft Graph', icon: '/assets/tech_icons/Microsoft_graph.png' },
+  { name: 'Nest', icon: '/assets/tech_icons/nest.png' },
+  { name: 'Tailwind', icon: '/assets/tech_icons/tailwind.png' },
+  { name: 'Typescript', icon: '/assets/tech_icons/typescript.png' },
   { name: 'Postgresql', icon: './assets/tech_icons/postgresql.png' },
   { name: 'Redux', icon: null },
   { name: 'Redis', icon: null },
 ]
 
 const social_icons = [
-  { name: 'GitHub', icon: './assets/social_icons/github.png', link: 'https://github.com/IIbreathII' },
-  { name: 'LinkedIn', icon: './assets/social_icons/linkedin.png', link: 'https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D0%B5%D0%BC-%D1%81%D1%82%D0%B0%D1%80%D0%B8%D0%BA%D0%BE%D0%B2-92a300360/' },
-  { name: 'Discord', icon: './assets/social_icons/discord.png', link: 'https://discord.com/users/1471826882096926720' },
-  { name: 'Telegram', icon: './assets/social_icons/telegram.png', link: 'https://t.me/Temastarichok' },
+  { name: 'GitHub', icon: '/assets/social_icons/github.png', link: 'https://github.com/IIbreathII' },
+  { name: 'LinkedIn', icon: '/assets/social_icons/linkedin.png', link: 'https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D0%B5%D0%BC-%D1%81%D1%82%D0%B0%D1%80%D0%B8%D0%BA%D0%BE%D0%B2-92a300360/' },
+  { name: 'Discord', icon: '/assets/social_icons/discord.png', link: 'https://discord.com/users/1471826882096926720' },
+  { name: 'Telegram', icon: '/assets/social_icons/telegram.png', link: 'https://t.me/Temastarichok' },
 ]
 
 const fadeUp = {
@@ -76,7 +76,7 @@ function Landing() {
           initial="hidden"
           animate="visible"
           whileHover="hover"
-          onClick={() => window.open('./documents/CV.txt', '_blank')}
+          onClick={() => window.open('/documents/CV.txt', '_blank')}
           style={{ cursor: 'pointer' }}
         >
           <div><h2>My CV</h2></div>
