@@ -46,11 +46,10 @@ function SkillSection({
                 position: stickyTop !== null ? 'sticky' : 'relative',
                 top: stickyTop !== null ? `${stickyTop}px` : 'auto',
                 zIndex: index + 1,
-
-                // Жестко ограничиваем высоту
                 maxHeight: stickyTop !== null ? `calc(100vh - ${stickyTop}px)` : '100vh',
                 display: 'flex',
                 flexDirection: 'column',
+                overflow: 'hidden',
             }}
         >
             <div className={styles.stickyHeader} ref={headerRef}>
@@ -64,15 +63,7 @@ function SkillSection({
                 </div>
             </div>
 
-            {/* ДОБАВЛЕН класс customScroll и minHeight: 0 */}
-            <div
-                className={`${styles.contentBlock} ${styles.customScroll}`}
-                style={{
-                    flex: 1,
-                    overflowY: 'auto',
-                    minHeight: 0
-                }}
-            >
+            <div className={styles.contentBlock}>
                 <div className={styles.container}>
                     <motion.div
                         ref={contentRef}
