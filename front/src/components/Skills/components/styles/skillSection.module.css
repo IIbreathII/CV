@@ -97,8 +97,25 @@
     font-size: 1.25rem;
 }
 
+/* Скрываем скроллбар, но сохраняем возможность скроллить */
+.customScroll {
+    /* Для Firefox */
+    scrollbar-width: none;
+    /* Для IE и старого Edge */
+    -ms-overflow-style: none;
+}
+
+/* Для Chrome, Safari, нового Edge и Opera */
+.customScroll::-webkit-scrollbar {
+    display: none;
+}
+
 /* --- Адаптив --- */
 @media (max-width: 992px) {
+    .contentBlock {
+        padding: 1rem 0 10rem 0;
+    }
+
     .container {
         padding: 0 5%;
     }
@@ -110,7 +127,7 @@
     .headerContent {
         align-items: flex-start;
         gap: 0.5rem;
-        padding: 1.5rem 0;
+        padding: 1rem 0;
     }
 
     .sectionNumber {

@@ -14,7 +14,7 @@ const Accent = ({ children }) => (
 
 function Experience() {
   const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 })
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 })
 
   return (
     <section className={styles.experience_wrapper} id="experience" ref={sectionRef}>
@@ -61,7 +61,7 @@ function Experience() {
                 </p>
                 <br />
                 <p><strong>Key responsibilities and skills:</strong></p>
-                <ul style={{ paddingLeft: '20px', marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <ul className={styles.skillsList}>
                   <li>Creating UIs and developing high-performance client interfaces using <Accent>React</Accent> and <Accent>Next.js</Accent></li>
                   <li>Managing complex application states (<Accent>Redux</Accent>)</li>
                   <li>Designing server architecture and building REST APIs (CRUD, pagination) with <Accent>NestJS</Accent> and <Accent>Express</Accent></li>

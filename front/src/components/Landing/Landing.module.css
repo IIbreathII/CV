@@ -89,6 +89,7 @@
     min-height: clamp(160px, 25vw, 220px);
     display: flex;
     align-items: flex-end;
+    background-size: 150%;
     position: relative;
 }
 

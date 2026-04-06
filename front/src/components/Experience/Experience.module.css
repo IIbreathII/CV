@@ -13,7 +13,7 @@
     max-width: 1920px;
     width: 100%;
     min-height: 100vh;
-    max-height: 1440px;
+    max-height: 1640px;
     box-sizing: border-box;
 
 }
@@ -42,7 +42,6 @@
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     min-height: 600px;
 }
 
@@ -71,8 +70,8 @@
     overflow: hidden;
     flex-shrink: 0;
     background-image: url('/assets/image/cvphoto.png');
-    background-size: 150%;
-    background-position: center 20%;
+    background-size: 200%;
+    background-position: center 60%;
     background-repeat: no-repeat;
 }
 
@@ -124,12 +123,25 @@
     margin: 0;
     opacity: 0.8;
     max-width: 55ch;
+    height: auto;
 }
 
 .description span {
     font-weight: 700;
     opacity: 1;
     color: var(--color-font);
+}
+
+.skillsList {
+    padding-left: 20px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skillsList li {
+    display: list-item;
 }
 
 /* ── Mobile reset ── */
