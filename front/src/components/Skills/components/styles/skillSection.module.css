@@ -81,9 +81,11 @@
     cursor: default;
 }
 
-.techItem:hover {
-    transform: translateX(10px);
-    opacity: 0.7;
+@media (hover: hover) {
+    .techItem:hover {
+        transform: translateX(10px);
+        opacity: 0.7;
+    }
 }
 
 .techIndex {
