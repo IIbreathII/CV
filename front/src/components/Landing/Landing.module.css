@@ -129,28 +129,10 @@
     margin-top: 10px;
 }
 
-.transition_icon {
-    width: clamp(20px, 1.5vw + 14px, 28px);
-    height: clamp(20px, 1.5vw + 14px, 28px);
-    flex-shrink: 0;
-    position: relative;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
-.transition_icon::after {
-    content: '';
-    background-image: url('./assets/ui_icons/arrow-right.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
-    inset: 0;
-    transform: rotate(-45deg);
-}
 
-/* transition_icon анимируется через CSS — это не трансформ блока, оставляем */
 .projects_block:hover .transition_icon,
-.contact_block:hover .transition_icon {
+.contact_block:hover {
     transform: translate(4px, -4px);
 }
 
