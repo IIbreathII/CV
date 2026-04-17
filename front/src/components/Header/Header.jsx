@@ -105,7 +105,7 @@ const Header = () => {
       <header className={`${styles.header} ${hidden ? styles.header_hidden : ''}`}>
         <div className={styles.header_block}>
           <div className={styles.header_logo}>
-            <a href="/documents/CV.txt" download className={styles.download_btn}>
+            <a href="/documents/CV_Artem_Starikov.docx" download className={styles.download_btn}>
               Download CV
             </a>
           </div>

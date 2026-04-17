@@ -9,7 +9,7 @@ const project_tech_icons = [
   { name: 'Nest', icon: '/assets/tech_icons/nest.png' },
   { name: 'Tailwind', icon: '/assets/tech_icons/tailwind.png' },
   { name: 'Typescript', icon: '/assets/tech_icons/typescript.png' },
-  { name: 'Postgresql', icon: './assets/tech_icons/postgresql.png' },
+  { name: 'Postgresql', icon: '/assets/tech_icons/postgresql.png' }, // исправил путь (был ./)
   { name: 'Redux', icon: null },
   { name: 'Redis', icon: null },
 ]
@@ -30,11 +30,11 @@ const fadeUp = {
   }),
 }
 
+// ✅ Исправлено: scale: 0.5 → scale: 1 (был баг — блоки рендерились в полразмера)
 const liftHover = {
-  rest: { y: 0, scale: 0.5 },
+  rest: { y: 0, scale: 1 },
   hover: { y: -3, scale: 1.02, transition: { duration: 0.22, ease: 'easeOut' } },
 }
-
 
 const stagger = {
   hidden: {},
@@ -57,7 +57,6 @@ function Landing() {
     <section className={styles.landing_wrapper} id="landing">
       <div className={styles.landing}>
 
-        {/* Title — без hover-эффекта */}
         <motion.div
           className={styles.title_block}
           variants={fadeUp}
@@ -68,7 +67,6 @@ function Landing() {
           <AnimatedTitle />
         </motion.div>
 
-        {/* CV */}
         <motion.div
           className={styles.cv_block}
           variants={{ ...fadeUp, ...liftHover }}
@@ -76,13 +74,12 @@ function Landing() {
           initial="hidden"
           animate="visible"
           whileHover="hover"
-          onClick={() => window.open('/documents/CV.txt', '_blank')}
+          onClick={() => window.open('/documents/CV_Artem_Starikov.docx', '_blank', 'noopener,noreferrer')}
           style={{ cursor: 'pointer' }}
         >
-          <div><h2>My CV</h2></div>
+          <h2>My CV</h2>
         </motion.div>
 
-        {/* Projects */}
         <motion.div
           className={styles.projects_block}
           variants={{ ...fadeUp, ...liftHover }}
@@ -101,7 +98,6 @@ function Landing() {
           <div className={styles.project_cards_body}>
             <div className={styles.project_card_giff} />
             <h2 className={styles.tech_stack_title}>Tech stack</h2>
-            {/* Tech icons — stagger */}
             <motion.div
               className={styles.project_tech_icons}
               variants={stagger}
@@ -114,7 +110,16 @@ function Landing() {
                   className={styles.tech_card}
                   variants={staggerChild}
                 >
-                  {tech.icon && <img src={tech.icon} alt={tech.name} />}
+                  {tech.icon && (
+                    <img
+                      src={tech.icon}
+                      alt={tech.name}
+                      width={24}
+                      height={24}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
                   <span>{tech.name}</span>
                 </motion.div>
               ))}
@@ -122,7 +127,6 @@ function Landing() {
           </div>
         </motion.div>
 
-        {/* Experience */}
         <motion.div
           className={styles.expirience_block}
           variants={{ ...fadeUp, ...liftHover }}
@@ -142,7 +146,6 @@ function Landing() {
           </p>
         </motion.div>
 
-        {/* Contact */}
         <motion.div
           className={styles.contact_block}
           variants={{ ...fadeUp, ...liftHover }}
@@ -160,27 +163,28 @@ function Landing() {
           <h2>Contact</h2>
         </motion.div>
 
-        {/* Social */}
         <motion.div
           className={styles.social_block}
-          variants={fadeUp} // Оставляем только появление
+          variants={fadeUp}
           initial="hidden"
           animate="visible"
-        // Убрали whileHover="hover" отсюда
         >
           {social_icons.map((icon) => (
             <motion.div
               key={icon.name}
               className={styles.social_icon}
-              // Добавляем hover конкретно на каждую иконку
-              whileHover={{
-                scale: 1.15,
-                y: -4,
-                transition: { duration: 0.2 }
-              }}
+              whileHover={{ scale: 1.15, y: -4, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.9 }}
             >
-              <img src={icon.icon} alt={icon.name} onClick={() => window.open(icon.link, '_blank')} />
+              <img
+                src={icon.icon}
+                alt={icon.name}
+                width={32}
+                height={32}
+                fetchPriority="high"
+                decoding="async"
+                onClick={() => window.open(icon.link, '_blank', 'noopener,noreferrer')}
+              />
             </motion.div>
           ))}
         </motion.div>
