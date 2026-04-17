@@ -1,3 +1,4 @@
+import { useCallback } from 'react' // Добавили импорт useCallback
 import styles from './Landing.module.css'
 import AnimatedTitle from './compotent/AnimatedTitle'
 import { motion } from 'framer-motion'
@@ -9,7 +10,7 @@ const project_tech_icons = [
   { name: 'Nest', icon: '/assets/tech_icons/nest.png' },
   { name: 'Tailwind', icon: '/assets/tech_icons/tailwind.png' },
   { name: 'Typescript', icon: '/assets/tech_icons/typescript.png' },
-  { name: 'Postgresql', icon: '/assets/tech_icons/postgresql.png' }, // исправил путь (был ./)
+  { name: 'Postgresql', icon: '/assets/tech_icons/postgresql.png' },
   { name: 'Redux', icon: null },
   { name: 'Redis', icon: null },
 ]
@@ -30,7 +31,6 @@ const fadeUp = {
   }),
 }
 
-// ✅ Исправлено: scale: 0.5 → scale: 1 (был баг — блоки рендерились в полразмера)
 const liftHover = {
   rest: { y: 0, scale: 1 },
   hover: { y: -3, scale: 1.02, transition: { duration: 0.22, ease: 'easeOut' } },
@@ -47,11 +47,28 @@ const staggerChild = {
 }
 
 function Landing() {
-  const scrollToSection = (id) => {
+  // 1. Мемоизируем скролл и перехватываем ивент
+  const scrollToSection = useCallback((e, id) => {
+    e.preventDefault();
+    e.stopPropagation(); // Блокируем всплытие клика
     const target = document.querySelector(id)
     if (!target) return
     target.scrollIntoView({ behavior: 'smooth' })
-  }
+  }, [])
+
+  // 2. Мемоизируем открытие CV
+  const handleCVClick = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation(); // Перехватываем ивент!
+    window.open('/documents/CV_Artem_Starikov.docx', '_blank', 'noopener,noreferrer')
+  }, [])
+
+  // 3. Мемоизируем открытие соцсетей
+  const handleSocialClick = useCallback((e, link) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(link, '_blank', 'noopener,noreferrer')
+  }, [])
 
   return (
     <section className={styles.landing_wrapper} id="landing">
@@ -67,6 +84,7 @@ function Landing() {
           <AnimatedTitle />
         </motion.div>
 
+        {/* Заменили инлайн-функцию на мемоизированную handleCVClick */}
         <motion.div
           className={styles.cv_block}
           variants={fadeUp}
@@ -74,12 +92,13 @@ function Landing() {
           initial="hidden"
           animate="visible"
           whileHover={{ y: -3, scale: 1.02, transition: { duration: 0.22, ease: 'easeOut' } }}
-          onClick={() => window.open('/documents/CV_Artem_Starikov.docx', '_blank', 'noopener,noreferrer')}
+          onClick={handleCVClick}
           style={{ cursor: 'pointer' }}
         >
           <h2>My CV</h2>
         </motion.div>
 
+        {/* Передаем событие 'e' в мемоизированную функцию */}
         <motion.div
           className={styles.projects_block}
           variants={{ ...fadeUp, ...liftHover }}
@@ -87,7 +106,7 @@ function Landing() {
           initial="hidden"
           animate="visible"
           whileHover="hover"
-          onClick={() => scrollToSection('#projects')}
+          onClick={(e) => scrollToSection(e, '#projects')}
           style={{ cursor: 'pointer' }}
         >
           <div className={styles.project_header}>
@@ -134,7 +153,7 @@ function Landing() {
           initial="hidden"
           animate="visible"
           whileHover="hover"
-          onClick={() => scrollToSection('#experience')}
+          onClick={(e) => scrollToSection(e, '#experience')}
           style={{ cursor: 'pointer' }}
         >
           <h2>Experience</h2>
@@ -153,7 +172,7 @@ function Landing() {
           initial="hidden"
           animate="visible"
           whileHover="hover"
-          onClick={() => scrollToSection('#contact')}
+          onClick={(e) => scrollToSection(e, '#contact')}
           style={{ cursor: 'pointer' }}
         >
           <div className={styles.contact_header}>
@@ -183,7 +202,7 @@ function Landing() {
                 height={32}
                 fetchPriority="high"
                 decoding="async"
-                onClick={() => window.open(icon.link, '_blank', 'noopener,noreferrer')}
+                onClick={(e) => handleSocialClick(e, icon.link)} // Передаем ивент и линк
               />
             </motion.div>
           ))}
