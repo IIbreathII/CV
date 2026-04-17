@@ -69,11 +69,11 @@ function Landing() {
 
         <motion.div
           className={styles.cv_block}
-          variants={{ ...fadeUp, ...liftHover }}
+          variants={fadeUp}
           custom={0.2}
           initial="hidden"
           animate="visible"
-          whileHover="hover"
+          whileHover={{ y: -3, scale: 1.02, transition: { duration: 0.22, ease: 'easeOut' } }}
           onClick={() => window.open('/documents/CV_Artem_Starikov.docx', '_blank', 'noopener,noreferrer')}
           style={{ cursor: 'pointer' }}
         >
