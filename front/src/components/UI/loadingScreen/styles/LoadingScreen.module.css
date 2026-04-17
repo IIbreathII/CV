@@ -31,6 +31,8 @@
     letter-spacing: 0.04em;
     user-select: none;
     margin: 0;
+    padding: 0 20px;
+    text-align: center;
 }
 
 .dot {
