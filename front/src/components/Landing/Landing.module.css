@@ -84,13 +84,16 @@
 .cv_block {
     background-image: url('/assets/image/cvphoto.png');
     background-size: cover;
+    /* Оставляем только cover, чтобы картинка пропорционально заполняла весь блок */
     background-position: center;
+    background-repeat: no-repeat;
+    /* Запрещаем размножение картинки */
     padding: clamp(12px, 2vw, 20px);
     min-height: clamp(160px, 25vw, 220px);
     display: flex;
     align-items: flex-end;
-    background-size: 150%;
     position: relative;
+    /* Удалили background-size: 150%; */
 }
 
 .cv_block>* {
