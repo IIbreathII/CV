@@ -4,7 +4,6 @@ import emailjs from '@emailjs/browser';
 const STORAGE_KEY = 'contactFormDraft';
 
 export function useContactForm() {
-    // 1. Ленивая инициализация: при первой загрузке достаем данные из хранилища
     const [fields, setFields] = useState(() => {
         try {
             const savedFields = localStorage.getItem(STORAGE_KEY);
@@ -15,9 +14,22 @@ export function useContactForm() {
         }
     });
 
-    const [status, setStatus] = useState('idle'); // idle | loading | success | error
+    const [status, setStatus] = useState('idle');
 
-    // 2. Эффект: при любом изменении полей сохраняем их в localStorage
+    // 🔍 Лог переменных окружения при инициализации хука
+    useEffect(() => {
+        const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        console.group('📧 EmailJS ENV check');
+        console.log('MODE:', import.meta.env.MODE);
+        console.log('VITE_EMAILJS_SERVICE_ID:',  serviceId  ? `✅ "${serviceId}"`          : '❌ undefined');
+        console.log('VITE_EMAILJS_TEMPLATE_ID:', templateId ? `✅ "${templateId}"`         : '❌ undefined');
+        console.log('VITE_EMAILJS_PUBLIC_KEY:',  publicKey  ? `✅ "${publicKey.slice(0,4)}…"` : '❌ undefined');
+        console.groupEnd();
+    }, []);
+
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(fields));
     }, [fields]);
@@ -30,27 +42,58 @@ export function useContactForm() {
         e.preventDefault();
         setStatus('loading');
 
+        const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        // 🔍 Лог перед отправкой
+        console.group('📤 EmailJS sendAttempt');
+        console.log('serviceId:',  serviceId  ?? '❌ MISSING');
+        console.log('templateId:', templateId ?? '❌ MISSING');
+        console.log('publicKey:',  publicKey  ? publicKey.slice(0, 4) + '…' : '❌ MISSING');
+        console.log('payload:', {
+            name:    fields.name,
+            email:   fields.email,
+            message: fields.message.slice(0, 30) + '…',
+        });
+        console.groupEnd();
+
+        // 🔍 Стоп если хоть одна переменная отсутствует
+        if (!serviceId || !templateId || !publicKey) {
+            console.error('❌ EmailJS: одна или несколько ENV-переменных не определены. Отправка прервана.');
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 3000);
+            return;
+        }
+
         try {
-            await emailjs.send(
-                import.meta.env.VITE_EMAILJS_SERVICE_ID,
-                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+            const result = await emailjs.send(
+                serviceId,
+                templateId,
                 {
-                    name: fields.name,
-                    email: fields.email,
+                    name:    fields.name,
+                    email:   fields.email,
                     message: fields.message,
-                    title: fields.name, // Используем имя в качестве заголовка, как было у тебя
+                    title:   fields.name,
                 },
-                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+                publicKey
             );
 
+            // 🔍 Лог успешного ответа
+            console.log('✅ EmailJS success:', result.status, result.text);
             setStatus('success');
-
-            // 3. После успешной отправки очищаем форму и удаляем черновик из памяти
             setFields({ name: '', email: '', message: '' });
             localStorage.removeItem(STORAGE_KEY);
 
         } catch (err) {
-            console.error('Ошибка отправки EmailJS:', err);
+            // 🔍 Детальный лог ошибки
+            console.group('❌ EmailJS error');
+            console.error('message:', err?.message);
+            console.error('status:',  err?.status);
+            console.error('text:',    err?.text);
+            console.error('full:',    err);
+            console.groupEnd();
+
             setStatus('error');
         }
 
