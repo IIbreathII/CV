@@ -52,7 +52,7 @@ function Experience() {
               {/* Replaced <p> with <div> to semantically correctly nest the list */}
               <div className={styles.description}>
                 <p>
-                  I am a <Accent>Full Stack Developer</Accent> with 1.5 years of experience.
+                  I am a <Accent>Full Stack Developer</Accent> with 1+ years of experience.
                   My core stack is based on the <Accent>Node.js</Accent> ecosystem (<Accent>React / Next.js</Accent> on the frontend and <Accent>NestJS / Express</Accent> on the backend).
                 </p>
                 <br />
