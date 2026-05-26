@@ -78,9 +78,6 @@ export function useContactForm() {
                 },
                 publicKey
             );
-
-            // 🔍 Лог успешного ответа
-            console.log('✅ EmailJS success:', result.status, result.text);
             setStatus('success');
             setFields({ name: '', email: '', message: '' });
             localStorage.removeItem(STORAGE_KEY);

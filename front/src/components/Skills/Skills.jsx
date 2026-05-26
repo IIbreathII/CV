@@ -19,7 +19,7 @@ const skillsData = [
   {
     id: 3, number: "03", title: "Cloud & DevOps",
     text: "Deploying and managing applications in the cloud with automated workflows.",
-    technologies: ["Azure", "Docker", "CI/CD", "Git", "Nginx"],
+    technologies: ["Azure", "Docker",  "Git", "Nginx"],
     bgColor: "var(--color-accent-white)", textColor: "var(--color-foreground)"
   }
 ];
