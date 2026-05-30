@@ -32,6 +32,7 @@ async function prerender() {
 }
 
 prerender().catch((err) => {
-  console.error(' Prerender error:', err.message)
+  console.error('Prerender error:', err.message)
+  console.error('Stack:', err.stack)
   process.exit(1)
 })
