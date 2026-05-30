@@ -127,7 +127,7 @@ const Header = () => {
         </div>
       </header>
 
-      {!isDesktop && createPortal(
+      {!isDesktop && typeof document !== 'undefined' && createPortal(
         <div
           className={`${styles.mobile_overlay} ${isMenuOpen ? styles.mobile_overlay_open : ''}`}
           aria-hidden={!isMenuOpen}
