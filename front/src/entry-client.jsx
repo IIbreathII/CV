@@ -6,45 +6,50 @@ import LoadingScreen from './components/UI/loadingScreen/LoadingScreen.jsx'
 import { useAppReady } from './hooks/useAppReady'
 
 const RootLayout = () => {
-  const isAppReady = useAppReady()
+    const isAppReady = useAppReady()
 
-  // Убираем статический preload-veil из index.html — он больше не нужен,
-  // т.к. React уже смонтировался и LoadingScreen взял управление
-  useEffect(() => {
-    document.getElementById('preload-veil')?.remove()
-  }, [])
+    // Убираем статический preload-veil из index.html — он больше не нужен,
+    // т.к. React уже смонтировался и LoadingScreen взял управление
+    useEffect(() => {
+        document.getElementById('preload-veil')?.remove()
+    }, [])
 
-  const [isFirstVisit] = useState(() => {
-    return !sessionStorage.getItem('hasVisitedBefore')
-  })
+    const [isFirstVisit] = useState(() => {
+        if (typeof window === 'undefined') return false
+        return !sessionStorage.getItem('hasVisitedBefore')
+    })
 
-  const [minTimePassed, setMinTimePassed] = useState(false)
 
-  useEffect(() => {
-    if (isFirstVisit) {
-      const timer = setTimeout(() => setMinTimePassed(true), 2000)
-      return () => clearTimeout(timer)
+    const [minTimePassed, setMinTimePassed] = useState(false)
+
+    useEffect(() => {
+        if (isFirstVisit) {
+        const timer = setTimeout(() => setMinTimePassed(true), 2000)
+        return () => clearTimeout(timer)
     }
-  }, [isFirstVisit])
+    }, [isFirstVisit])
 
-  const shouldHide = isAppReady && minTimePassed
+    const shouldHide = isAppReady && minTimePassed
 
-  useEffect(() => {
-    if (shouldHide && isFirstVisit) {
-      sessionStorage.setItem('hasVisitedBefore', 'true')
-    }
-  }, [shouldHide, isFirstVisit])
+    useEffect(() => {
+        if (shouldHide && isFirstVisit) {
+            sessionStorage.setItem('hasVisitedBefore', 'true')
+        }
+    }, [shouldHide, isFirstVisit])
 
-  return (
+    return (
     <>
-      {isFirstVisit && <LoadingScreen isReady={shouldHide} />}
-      <App />
+        {isFirstVisit && <LoadingScreen isReady={shouldHide} />}
+        <App />
     </>
-  )
+    )
 }
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RootLayout />
-  </StrictMode>
-)
+const rootEl = typeof document !== 'undefined' ? document.getElementById('root') : null;
+if (rootEl) {
+    createRoot(rootEl).render(
+        <StrictMode>
+            <RootLayout />
+        </StrictMode>
+    )
+}
