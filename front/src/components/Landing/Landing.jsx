@@ -17,7 +17,7 @@ const project_tech_icons = [
 
 const social_icons = [
   { name: 'GitHub', icon: '/assets/social_icons/github.png', link: 'https://github.com/IIbreathII' },
-  { name: 'LinkedIn', icon: '/assets/social_icons/linkedin.png', link: 'https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D0%B5%D0%BC-%D1%81%D1%82%D0%B0%D1%80%D0%B8%D0%BA%D0%BE%D0%B2-92a300360/' },
+  { name: 'LinkedIn', icon: '/assets/social_icons/linkedin.png', link: 'https://www.linkedin.com/in/artem-starikov-fullstack-developer/' },
   { name: 'Discord', icon: '/assets/social_icons/discord.png', link: 'https://discord.com/users/1471826882096926720' },
   { name: 'Telegram', icon: '/assets/social_icons/telegram.png', link: 'https://t.me/Temastarichok' },
 ]
