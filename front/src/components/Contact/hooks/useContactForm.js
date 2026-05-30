@@ -5,6 +5,7 @@ const STORAGE_KEY = 'contactFormDraft';
 
 export function useContactForm() {
     const [fields, setFields] = useState(() => {
+        if (typeof window === 'undefined') return { name: '', email: '', message: '' }
         try {
             const savedFields = localStorage.getItem(STORAGE_KEY);
             return savedFields ? JSON.parse(savedFields) : { name: '', email: '', message: '' };
