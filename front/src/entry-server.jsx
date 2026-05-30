@@ -1,3 +1,5 @@
+global.window = {}
+global.document = { querySelector: () => null }
 import { renderToString } from 'react-dom/server'
 import App from './App.jsx'
 
