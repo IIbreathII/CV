@@ -13,11 +13,82 @@
   <meta property="og:image" content="https://cv-tau-lilac-88.vercel.app/assets/cvphoto.png" />
   <meta property="og:url" content="https://cv-tau-lilac-88.vercel.app" />
   <meta property="og:type" content="website" />
+
+  <style>
+    html, body { margin: 0; background: #0a0a0a; }
+
+    /* Класс вешается на <html> пока идёт загрузка */
+    html.is-loading {
+      overflow: hidden;
+      scrollbar-width: none; /* Firefox */
+    }
+    html.is-loading::-webkit-scrollbar {
+      display: none; /* Chrome / Safari / Edge */
+    }
+
+    @keyframes _blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+  </style>
+
+  <script>
+    document.documentElement.classList.add('is-loading')
+
+    window.addEventListener('load', function () {
+      const veil = document.getElementById('preload-veil')
+      if (!veil) {
+        document.documentElement.classList.remove('is-loading')
+        return
+      }
+
+      // Даём React время на гидрацию после load
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          veil.style.transition = 'opacity 0.4s ease'
+          veil.style.opacity = '0'
+
+          setTimeout(function () {
+            veil.remove()
+            document.documentElement.classList.remove('is-loading')
+          }, 400)
+        })
+      })
+    })
+  </script>
+  
 </head>
 
 <body>
+  <div
+    id="preload-veil"
+    style="
+      position: fixed; inset: 0; z-index: 9998;
+      background: #0a0a0a;
+      display: flex; align-items: center; justify-content: center;
+    "
+  >
+    <div style="
+      width: 80%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      border-left: 0.5px solid #1e1e1e; border-right: 0.5px solid #1e1e1e;
+    ">
+      <p style="
+        color: #e0e0e0; font-family: monospace;
+        font-size: clamp(14px, 2vw, 20px); letter-spacing: 0.04em;
+        user-select: none; margin: 0; padding: 0 20px; text-align: center;
+      ">
+        Greetings just need a time for magic
+        <span style="display:inline-block;animation:_blink 1.2s ease-in-out infinite">.</span>
+        <span style="display:inline-block;animation:_blink 1.2s ease-in-out infinite;animation-delay:0.2s">.</span>
+        <span style="display:inline-block;animation:_blink 1.2s ease-in-out infinite;animation-delay:0.4s">.</span>
+      </p>
+    </div>
+  </div>
+
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+
+  <script type="module" src="/src/entry-client.jsx"></script>
 </body>
 
 </html>

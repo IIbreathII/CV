@@ -88,6 +88,10 @@ body {
     outline: none;
 }
 
+html:not(.is-loading),
+body:not(.is-loading) {
+  overflow: visible !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
 

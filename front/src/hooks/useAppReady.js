@@ -1,43 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react'
 
 export function useAppReady() {
-    const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(false)
 
-    useEffect(() => {
-        let isMounted = true;
+  useEffect(() => {
+    let cancelled = false
 
-        async function waitForAssets() {
-            try {
-                await document.fonts.ready;
-                const images = Array.from(document.images);
-                const imagePromises = images.map((img) => {
-                    if (img.complete) return Promise.resolve();
+    document.fonts.ready.then(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!cancelled) setIsReady(true)
+        })
+      })
+    })
 
-                    return new Promise((resolve) => {
-                        img.onload = resolve;
-                        img.onerror = resolve;
-                    });
-                });
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
-                await Promise.all(imagePromises);
-
-                await new Promise(res => setTimeout(res, 500));
-
-            } catch (error) {
-                console.error("Ошибка при проверке готовности ассетов:", error);
-            } finally {
-                if (isMounted) {
-                    setIsReady(true);
-                }
-            }
-        }
-
-        setTimeout(waitForAssets, 0);
-
-        return () => {
-            isMounted = false;
-        };
-    }, []);
-
-    return isReady;
+  return isReady
 }
