@@ -7,7 +7,7 @@ const projectsData = [
     title: "Teams Schedule Helper",
     description: "An open source platform for managing teams and scheduling meetings directly integrated with Microsoft Teams.",
     gifUrl: "./assets/project_preview/schedule.png",
-    gifLink: "https://github.com/orgs/Horizon-Office/repositories",
+    gifLink: "",
     technologies: [
       { name: "Azure", icon: "./assets/tech_icons/Microsoft_Azure.png" },
       { name: "Microsoft graph", icon: "./assets/tech_icons/Microsoft_graph.png" },
